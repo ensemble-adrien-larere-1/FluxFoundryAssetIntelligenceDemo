@@ -284,27 +284,27 @@ button{font-family:inherit}
         </div>
         <div style="display:flex;gap:12px;margin-top:20px"><sc-for list="{{ procStages }}" as="st" hint-placeholder-count="4"><div style="{{ st.boxStyle }}"><div style="{{ st.numStyle }}">{{ st.num }}</div><div><div style="font-size:13px;font-weight:600;color:{{ st.textColor }}">{{ st.label }}</div><div style="font-size:10.5px;color:var(--ink3)">{{ st.stateLabel }}</div></div></div></sc-for></div>
 
-        <div style="margin-top:30px"><h2 style="font-size:22px">Structured knowledge extracted from 3 source documents</h2></div>
+        <div style="margin-top:30px"><h2 style="font-size:22px">{{ extractHeading }}</h2></div>
         <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:16px">
-          <div style="flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--info)"><div style="font-family:Manrope;font-weight:800;font-size:24px">46</div><div style="font-size:12px;color:var(--ink2);margin-top:2px">Equipment records</div></div>
-          <div style="flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--info)"><div style="font-family:Manrope;font-weight:800;font-size:24px">128</div><div style="font-size:12px;color:var(--ink2);margin-top:2px">Tags and attributes</div></div>
-          <div style="flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--info)"><div style="font-family:Manrope;font-weight:800;font-size:24px">31</div><div style="font-size:12px;color:var(--ink2);margin-top:2px">Relationships</div></div>
+          <sc-for list="{{ extractSummaryCards }}" as="c" hint-placeholder-count="3">
+            <div style="flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--info)"><div style="font-family:Manrope;font-weight:800;font-size:24px">{{ c.value }}</div><div style="font-size:12px;color:var(--ink2);margin-top:2px">{{ c.label }}</div></div>
+          </sc-for>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 372px;gap:22px;margin-top:22px;align-items:start">
           <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--info);overflow:hidden">
             <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)">
-              <div style="flex:1;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:var(--card2);box-shadow:var(--inset);color:var(--ink3);font-size:12.5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Search extracted records…</div>
-              <span style="font-size:12px;color:var(--ink3)">Select a row to inspect its source evidence</span>
+              <div style="flex:1;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:var(--card2);box-shadow:var(--inset);color:var(--ink3);font-size:12.5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>{{ extractSearchLabel }}</div>
+              <span style="font-size:12px;color:var(--ink3)">{{ extractHelperLabel }}</span>
             </div>
-            <div style="display:grid;grid-template-columns:.85fr 1.9fr 1.1fr 1.3fr 1fr;gap:14px;padding:11px 18px;background:var(--card2);font-size:11px;font-weight:700;color:var(--ink3);letter-spacing:.04em"><div>TAG</div><div>EQUIPMENT</div><div>CLASS</div><div>PROPOSED FL</div><div>SOURCE</div></div>
+            <div style="display:grid;grid-template-columns:.85fr 1.9fr 1.1fr 1.3fr 1fr;gap:14px;padding:11px 18px;background:var(--card2);font-size:11px;font-weight:700;color:var(--ink3);letter-spacing:.04em"><sc-for list="{{ extractColumns }}" as="col" hint-placeholder-count="5"><div>{{ col }}</div></sc-for></div>
             <sc-for list="{{ extractRows }}" as="r" hint-placeholder-count="6">
               <div onClick="{{ r.onSelect }}" style="{{ r.rowStyle }}">
-                <div class="mono" style="font-size:12.5px;font-weight:600;color:var(--accent-strong)">{{ r.tag }}</div>
-                <div style="font-size:13px;font-weight:500">{{ r.equip }}</div>
-                <div style="font-size:12.5px;color:var(--ink2)">{{ r.cls }}</div>
-                <div class="mono" style="font-size:11px;color:var(--ink2)">{{ r.floc }}</div>
-                <div style="font-size:12px;color:var(--ink2)">{{ r.src }}</div>
+                <div class="mono" style="font-size:12.5px;font-weight:600;color:var(--accent-strong)">{{ r.c1 }}</div>
+                <div style="font-size:13px;font-weight:500">{{ r.c2 }}</div>
+                <div style="font-size:12.5px;color:var(--ink2)">{{ r.c3 }}</div>
+                <div class="mono" style="font-size:11px;color:var(--ink2)">{{ r.c4 }}</div>
+                <div style="font-size:12px;color:var(--ink2)">{{ r.c5 }}</div>
               </div>
             </sc-for>
           </div>
@@ -340,14 +340,12 @@ button{font-family:inherit}
         <div style="display:flex;gap:12px;margin-top:20px"><sc-for list="{{ procStages }}" as="st" hint-placeholder-count="4"><div style="{{ st.boxStyle }}"><div style="{{ st.numStyle }}">{{ st.num }}</div><div><div style="font-size:13px;font-weight:600;color:{{ st.textColor }}">{{ st.label }}</div><div style="font-size:10.5px;color:var(--ink3)">{{ st.stateLabel }}</div></div></div></sc-for></div>
 
         <div style="margin-top:30px;display:flex;align-items:center;gap:12px"><div style="width:34px;height:34px;border-radius:10px;background:var(--ok-pale);color:var(--ok-deep);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h2 style="font-size:22px">Technical critique complete</h2></div>
-        <p style="color:var(--ink2);font-size:14.5px;margin-top:10px;line-height:1.5;max-width:720px">Foundry compared the extracted draft with source evidence and the selected engineering context.</p>
+        <p style="color:var(--ink2);font-size:14.5px;margin-top:10px;line-height:1.5;max-width:720px">{{ critiqueIntro }}</p>
 
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">
-          <span style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:12px;background:var(--ok-pale);color:var(--ok-deep);font-size:13px;font-weight:700">84 checks passed</span>
-          <span style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:12px;background:var(--warn-pale);color:var(--warn-deep);font-size:13px;font-weight:700">12 engineering observations</span>
-          <span style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:12px;background:var(--danger-pale);color:var(--danger-deep);font-size:13px;font-weight:700">3 conflicting sources</span>
-          <span style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:12px;background:var(--neutral-pale);color:var(--neutral-ink);font-size:13px;font-weight:700">2 potential duplicates</span>
-          <span style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:12px;background:var(--neutral-pale);color:var(--neutral-ink);font-size:13px;font-weight:700">1 possible coverage gap</span>
+          <sc-for list="{{ critiqueSummaryChips }}" as="chip" hint-placeholder-count="5">
+            <span style="{{ chip.style }}">{{ chip.label }}</span>
+          </sc-for>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 300px;gap:22px;margin-top:22px;align-items:start">
@@ -397,7 +395,7 @@ button{font-family:inherit}
         </div>
         <div style="display:flex;gap:12px;margin-top:20px"><sc-for list="{{ procStages }}" as="st" hint-placeholder-count="4"><div style="{{ st.boxStyle }}"><div style="{{ st.numStyle }}">{{ st.num }}</div><div><div style="font-size:13px;font-weight:600;color:{{ st.textColor }}">{{ st.label }}</div><div style="font-size:10.5px;color:var(--ink3)">{{ st.stateLabel }}</div></div></div></sc-for></div>
 
-        <div style="margin-top:30px"><h2 style="font-size:22px">7 decisions require engineering review</h2><p style="color:var(--ink2);font-size:14px;margin-top:8px;line-height:1.5;max-width:760px">Review order considers safety, equipment criticality, operational consequence, confidence, and downstream dependencies.</p></div>
+        <div style="margin-top:30px"><h2 style="font-size:22px">{{ prioritiseHeading }}</h2><p style="color:var(--ink2);font-size:14px;margin-top:8px;line-height:1.5;max-width:760px">{{ prioritiseIntro }}</p></div>
 
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px">
           <span style="padding:8px 14px;border-radius:11px;background:var(--accent-pale);color:var(--accent-strong);font-weight:700;font-size:12.5px;box-shadow:var(--inset)">All priorities</span>
@@ -461,7 +459,7 @@ button{font-family:inherit}
 
         <div style="display:flex;align-items:center;gap:14px;margin-top:26px">
           <button onClick="{{ preparePublish }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:var(--pillow);display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur)" style-hover="box-shadow:var(--pillow-lift)">Prepare for publishing <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <span style="font-size:12.5px;color:var(--ink2)">Resolve the two blocking decisions to enable publishing</span>
+          <span style="font-size:12.5px;color:var(--ink2)">{{ prioritiseFooter }}</span>
         </div>
       </div>
     </sc-if>
@@ -469,27 +467,27 @@ button{font-family:inherit}
     <sc-if value="{{ show.decision }}">
       <div style="max-width:940px;margin:0 auto;padding:26px 28px 72px;animation:fadeUp .35s ease">
         <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2);margin-bottom:14px"><a onClick="{{ goProcesses }}" style="cursor:pointer;color:var(--ink2)">Processes</a><span>/</span><a onClick="{{ backToQueue }}" style="cursor:pointer;color:var(--ink2)">{{ proc.name }}</a><span>/</span><span style="color:var(--ink)">Decision</span></div>
-        <h1 style="font-size:28px">Confirm the upstream isolation valve for P-104</h1>
+        <h1 style="font-size:28px">{{ decisionView.title }}</h1>
         <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:14px">
-          <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:11px;background:var(--danger-pale);color:var(--danger-deep);font-weight:700;font-size:12.5px"><span style="width:20px;height:20px;border-radius:6px;background:var(--danger-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px">1</span>Priority</span>
-          <span style="padding:6px 13px;border-radius:11px;background:var(--danger-pale);color:var(--danger-deep);font-weight:700;font-size:12.5px">High consequence</span>
-          <span style="padding:6px 13px;border-radius:11px;background:var(--ok-pale);color:var(--ok-deep);font-weight:700;font-size:12.5px">High confidence</span>
-          <span style="padding:6px 13px;border-radius:11px;background:var(--warn-pale);color:var(--warn-deep);font-weight:700;font-size:12.5px">Blocks SOP-STK-014</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:11px;background:var(--danger-pale);color:var(--danger-deep);font-weight:700;font-size:12.5px"><span style="width:20px;height:20px;border-radius:6px;background:var(--danger-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px">{{ decisionView.priority }}</span>Priority</span>
+          <span style="padding:6px 13px;border-radius:11px;background:var(--danger-pale);color:var(--danger-deep);font-weight:700;font-size:12.5px">{{ decisionView.consequence }}</span>
+          <span style="padding:6px 13px;border-radius:11px;background:var(--ok-pale);color:var(--ok-deep);font-weight:700;font-size:12.5px">{{ decisionView.confidence }}</span>
+          <span style="padding:6px 13px;border-radius:11px;background:var(--warn-pale);color:var(--warn-deep);font-weight:700;font-size:12.5px">{{ decisionView.blocks }}</span>
         </div>
 
         <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--info);padding:22px;margin-top:22px">
           <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink3);margin-bottom:8px">DECISION REQUIRED</div>
-          <p style="font-size:16px;font-weight:600;line-height:1.5">Which valve should the isolation procedure reference as the upstream mechanical isolation point for P-104?</p>
+          <p style="font-size:16px;font-weight:600;line-height:1.5">{{ decisionView.question }}</p>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
           <div style="background:var(--accent-pale);border:1px solid var(--accent);border-radius:var(--radius-sm);padding:20px">
             <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent-strong);margin-bottom:8px">FOUNDRY RECOMMENDATION</div>
-            <p style="font-size:14.5px;color:var(--ink);line-height:1.5">Replace <span class="mono" style="background:var(--danger-pale);color:var(--danger-deep);padding:1px 6px;border-radius:5px">HV-104B</span> with <span class="mono" style="background:var(--ok-pale);color:var(--ok-deep);padding:1px 6px;border-radius:5px">HV-104A</span> in step 4 of the draft procedure.</p>
+            <p style="font-size:14.5px;color:var(--ink);line-height:1.5">{{ decisionView.recommendation }}</p>
           </div>
           <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px">
             <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink3);margin-bottom:8px">RATIONALE</div>
-            <p style="font-size:13.5px;color:var(--ink2);line-height:1.5">P&amp;ID SML-PID-STK-201 identifies HV-104A immediately upstream of P-104. HV-104B appears downstream of the pump and would not provide the isolation described by the procedure.</p>
+            <p style="font-size:13.5px;color:var(--ink2);line-height:1.5">{{ decisionView.rationale }}</p>
           </div>
         </div>
 
@@ -497,29 +495,29 @@ button{font-family:inherit}
           <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink3);margin-bottom:12px">EVIDENCE COMPARISON</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
             <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--info);padding:16px">
-              <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px"><div style="width:28px;height:28px;border-radius:8px;background:var(--accent-pale);color:var(--accent-strong);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><div style="font-size:12.5px;font-weight:600">SML-PID-STK-201.pdf</div><div style="font-size:10.5px;color:var(--ink3)">Rev 2 · Sheet 1 · Grid B4</div></div></div>
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px"><div style="width:28px;height:28px;border-radius:8px;background:var(--accent-pale);color:var(--accent-strong);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><div style="font-size:12.5px;font-weight:600">{{ decisionView.evidenceLeft.title }}</div><div style="font-size:10.5px;color:var(--ink3)">{{ decisionView.evidenceLeft.meta }}</div></div></div>
               <div style="height:150px;border-radius:10px;background:repeating-linear-gradient(135deg,var(--neutral-pale),var(--neutral-pale) 9px,var(--card2) 9px,var(--card2) 18px);border:1px solid var(--line);position:relative;overflow:hidden">
-                <div style="position:absolute;left:16%;top:30%;width:110px;height:46px;border:2px solid var(--ok);border-radius:8px;background:rgba(87,214,144,.14);display:flex;align-items:center;justify-content:center"><span class="mono" style="font-size:10px;color:var(--ok-deep);font-weight:700">HV-104A · upstream</span></div>
-                <span class="mono" style="position:absolute;bottom:8px;right:10px;font-size:9.5px;color:var(--ink3)">P&amp;ID crop</span>
+                <div style="position:absolute;left:16%;top:30%;width:110px;height:46px;border:2px solid var(--ok);border-radius:8px;background:rgba(87,214,144,.14);display:flex;align-items:center;justify-content:center"><span class="mono" style="font-size:10px;color:var(--ok-deep);font-weight:700">{{ decisionView.evidenceLeft.highlight }}</span></div>
+                <span class="mono" style="position:absolute;bottom:8px;right:10px;font-size:9.5px;color:var(--ink3)">{{ decisionView.evidenceLeft.caption }}</span>
               </div>
-              <p style="font-size:12px;color:var(--ink2);margin-top:10px;line-height:1.45">Extracted: HV-104A shown on the suction line immediately upstream of pump P-104.</p>
+              <p style="font-size:12px;color:var(--ink2);margin-top:10px;line-height:1.45">{{ decisionView.evidenceLeft.body }}</p>
             </div>
             <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--info);padding:16px">
-              <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px"><div style="width:28px;height:28px;border-radius:8px;background:var(--accent-pale);color:var(--accent-strong);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/></svg></div><div><div style="font-size:12.5px;font-weight:600">Draft SOP-STK-014</div><div style="font-size:10.5px;color:var(--ink3)">Draft · Step 4</div></div></div>
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px"><div style="width:28px;height:28px;border-radius:8px;background:var(--accent-pale);color:var(--accent-strong);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/></svg></div><div><div style="font-size:12.5px;font-weight:600">{{ decisionView.evidenceRight.title }}</div><div style="font-size:10.5px;color:var(--ink3)">{{ decisionView.evidenceRight.meta }}</div></div></div>
               <div style="height:150px;border-radius:10px;background:var(--card2);border:1px solid var(--line);padding:14px;position:relative;overflow:hidden">
-                <div style="font-size:11px;color:var(--ink2);line-height:1.7">Step 4. Close the upstream isolation valve <span class="mono" style="background:var(--danger-pale);color:var(--danger-deep);padding:1px 5px;border-radius:4px">HV-104B</span> and verify zero flow before draining the pump casing.</div>
-                <span class="mono" style="position:absolute;bottom:8px;right:10px;font-size:9.5px;color:var(--ink3)">SOP excerpt</span>
+                <div style="font-size:11px;color:var(--ink2);line-height:1.7">{{ decisionView.evidenceRight.excerpt }}</div>
+                <span class="mono" style="position:absolute;bottom:8px;right:10px;font-size:9.5px;color:var(--ink3)">{{ decisionView.evidenceRight.caption }}</span>
               </div>
-              <p style="font-size:12px;color:var(--ink2);margin-top:10px;line-height:1.45">Conflicts with drawing evidence — HV-104B is downstream of the pump discharge.</p>
+              <p style="font-size:12px;color:var(--ink2);margin-top:10px;line-height:1.45">{{ decisionView.evidenceRight.body }}</p>
             </div>
           </div>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:20px;padding:18px 20px;background:var(--card2);border:1px solid var(--line);border-radius:var(--radius-sm)">
-          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">AFFECTED OUTPUT</div><div style="font-size:13px;font-weight:600;margin-top:3px">SOP-STK-014</div></div>
-          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">AFFECTED EQUIPMENT</div><div style="font-size:13px;font-weight:600;margin-top:3px">P-104</div></div>
-          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">DOWNSTREAM EFFECT</div><div style="font-size:13px;font-weight:600;margin-top:3px;color:var(--warn-deep)">Blocks publication</div></div>
-          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">RELATED PROCESS</div><div style="font-size:13px;font-weight:600;margin-top:3px">P-104 Isolation and Restart</div></div>
+          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">AFFECTED OUTPUT</div><div style="font-size:13px;font-weight:600;margin-top:3px">{{ decisionView.affectedOutput }}</div></div>
+          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">AFFECTED EQUIPMENT</div><div style="font-size:13px;font-weight:600;margin-top:3px">{{ decisionView.affectedEquipment }}</div></div>
+          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">DOWNSTREAM EFFECT</div><div style="font-size:13px;font-weight:600;margin-top:3px;color:var(--warn-deep)">{{ decisionView.downstreamEffect }}</div></div>
+          <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">RELATED PROCESS</div><div style="font-size:13px;font-weight:600;margin-top:3px">{{ decisionView.relatedProcess }}</div></div>
         </div>
 
         <sc-if value="{{ decisionOpen }}">
@@ -536,8 +534,8 @@ button{font-family:inherit}
         <sc-if value="{{ decisionEdit }}">
           <div style="margin-top:22px;background:var(--card);border:1px solid var(--accent);border-radius:var(--radius-sm);box-shadow:var(--pillow);padding:22px">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">Edit the referenced value</div>
-            <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:7px">Upstream isolation valve</label>
-            <input id="dec-edit-val" defaultValue="HV-104A" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:14px;color:var(--ink);font-family:inherit"/>
+            <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:7px">{{ decisionView.editLabel }}</label>
+            <input id="dec-edit-val" defaultValue="{{ decisionView.editDefault }}" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:14px;color:var(--ink);font-family:inherit"/>
             <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin:14px 0 7px">Reason for change (required)</label>
             <textarea id="dec-edit-rat" rows="3" placeholder="Explain why the drafted value is being changed…" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:13.5px;color:var(--ink);font-family:inherit;resize:vertical"></textarea>
             <div style="display:flex;gap:12px;margin-top:16px">
@@ -952,7 +950,8 @@ class Component extends DCLogic {
 
   openProcess(p) {
     const map = { extract: 'extract', critique: 'critique', prioritise: 'prioritise', publish: 'publish' };
-    this.setState({ currentProcess: p.id, configOutput: p.outputKey, published: p.status === 'Published', decisionRecorded: false, page: map[p.stage] || 'extract' });
+    const evidenceByOutput = { hierarchy:'P-104', sop:'4.1', bom:'P-104', report:'P-104' };
+    this.setState({ currentProcess: p.id, configOutput: p.outputKey, published: p.status === 'Published', decisionRecorded: false, evidenceRow: evidenceByOutput[p.outputKey] || 'P-104', page: map[p.stage] || 'extract' });
     try { window.scrollTo(0, 0); } catch (e) {}
   }
 
@@ -1113,41 +1112,114 @@ class Component extends DCLogic {
       style:'cursor:pointer;padding:9px 16px;border-radius:11px;font-size:13px;transition:all var(--tdur);'+(on?'background:var(--accent-pale);color:var(--accent-strong);font-weight:700;box-shadow:var(--inset);border:1px solid var(--accent)':'background:var(--card);border:1px solid var(--line);color:var(--ink2);font-weight:600') }; });
     const startExtraction = ()=> {
       const processByOutput = { hierarchy:'proc-hier', sop:'proc-sop', bom:'proc-bom', report:'proc-rep' };
-      this.runWithLoader('Extracting structured knowledge from your source documents…','extract',3000,{currentProcess:processByOutput[s.configOutput] || 'proc-hier'});
+      const evidenceByOutput = { hierarchy:'P-104', sop:'4.1', bom:'P-104', report:'P-104' };
+      this.runWithLoader('Extracting structured knowledge from your source documents…','extract',3000,{currentProcess:processByOutput[s.configOutput] || 'proc-hier', evidenceRow:evidenceByOutput[s.configOutput] || 'P-104'});
     };
 
     // ---------- EXTRACT ----------
     const CONF = { High:'ok', Medium:'warn', Low:'danger' };
-    const extractRowsRaw = [
-      {tag:'P-104',equip:'Stock Preparation Process Pump',cls:'Centrifugal pump',floc:'SML-STK-PMP-104',src:'P&ID STK-201',conf:'High'},
-      {tag:'M-104',equip:'P-104 Drive Motor',cls:'Electric motor',floc:'SML-STK-MOT-104',src:'Equipment list',conf:'High'},
-      {tag:'HV-104A',equip:'P-104 Suction Isolation Valve',cls:'Manual valve',floc:'SML-STK-VLV-104A',src:'P&ID STK-201',conf:'Medium'},
-      {tag:'HV-104B',equip:'P-104 Discharge Isolation Valve',cls:'Manual valve',floc:'SML-STK-VLV-104B',src:'P&ID STK-201',conf:'Medium'},
-      {tag:'PI-104',equip:'P-104 Discharge Pressure Indicator',cls:'Instrument',floc:'SML-STK-INS-104',src:'P&ID STK-201',conf:'High'},
-      {tag:'S-104',equip:'P-104 Suction Strainer',cls:'Strainer',floc:'SML-STK-STR-104',src:'Equipment list',conf:'Low'},
-    ];
-    const extractRows = extractRowsRaw.map(r=>({...r, confStyle:this.chip(CONF[r.conf]), selected:s.evidenceRow===r.tag,
+    const isSopFlow = proc.outputKey === 'sop';
+    const extractHeading = isSopFlow ? 'Procedure draft extracted from 1 source document' : 'Structured knowledge extracted from 3 source documents';
+    const extractSummaryCards = isSopFlow
+      ? [
+          { value:'18', label:'Procedure steps drafted' },
+          { value:'11', label:'Safety prerequisites found' },
+          { value:'9', label:'Decision points flagged' },
+        ]
+      : [
+          { value:'46', label:'Equipment records' },
+          { value:'128', label:'Tags and attributes' },
+          { value:'31', label:'Relationships' },
+        ];
+    const extractColumns = isSopFlow
+      ? ['SECTION', 'EXTRACTED INSTRUCTION', 'TYPE', 'PAGE RANGE', 'SOURCE']
+      : ['TAG', 'EQUIPMENT', 'CLASS', 'PROPOSED FL', 'SOURCE'];
+    const extractSearchLabel = isSopFlow ? 'Search extracted steps and prerequisites…' : 'Search extracted records…';
+    const extractHelperLabel = isSopFlow ? 'Select a row to inspect the manual excerpt behind it' : 'Select a row to inspect its source evidence';
+    const extractRowsRaw = isSopFlow
+      ? [
+          {tag:'4.1',equip:'Verify pulper is electrically isolated and the rotor has fully stopped',cls:'Safety gate',floc:'pp. 142-143',src:'Pulper manual',conf:'High'},
+          {tag:'4.2',equip:'Close dilution-water valve VC98130G before opening the inspection hatch',cls:'Action step',floc:'pp. 143-144',src:'Pulper manual',conf:'High'},
+          {tag:'4.3',equip:'Measure rotor clearance at three clock positions and record readings',cls:'Measurement',floc:'pp. 144-145',src:'Pulper manual',conf:'High'},
+          {tag:'4.4',equip:'Inspect rotor bars and leading edges for wear, cracking, or impact damage',cls:'Inspection step',floc:'pp. 145-147',src:'Pulper manual',conf:'Medium'},
+          {tag:'4.5',equip:'Replace worn wear plates if measured clearance exceeds OEM limit',cls:'Decision rule',floc:'p. 146',src:'Pulper manual',conf:'Medium'},
+          {tag:'4.6',equip:'Return to service after manual rotor jog and abnormal-noise check',cls:'Restart check',floc:'pp. 147-148',src:'Pulper manual',conf:'Low'},
+        ]
+      : [
+          {tag:'P-104',equip:'Stock Preparation Process Pump',cls:'Centrifugal pump',floc:'SML-STK-PMP-104',src:'P&ID STK-201',conf:'High'},
+          {tag:'M-104',equip:'P-104 Drive Motor',cls:'Electric motor',floc:'SML-STK-MOT-104',src:'Equipment list',conf:'High'},
+          {tag:'HV-104A',equip:'P-104 Suction Isolation Valve',cls:'Manual valve',floc:'SML-STK-VLV-104A',src:'P&ID STK-201',conf:'Medium'},
+          {tag:'HV-104B',equip:'P-104 Discharge Isolation Valve',cls:'Manual valve',floc:'SML-STK-VLV-104B',src:'P&ID STK-201',conf:'Medium'},
+          {tag:'PI-104',equip:'P-104 Discharge Pressure Indicator',cls:'Instrument',floc:'SML-STK-INS-104',src:'P&ID STK-201',conf:'High'},
+          {tag:'S-104',equip:'P-104 Suction Strainer',cls:'Strainer',floc:'SML-STK-STR-104',src:'Equipment list',conf:'Low'},
+        ];
+    const extractRows = extractRowsRaw.map(r=>({...r, c1:r.tag, c2:r.equip, c3:r.cls, c4:r.floc, c5:r.src, confStyle:this.chip(CONF[r.conf]), selected:s.evidenceRow===r.tag,
       rowStyle:'display:grid;grid-template-columns:.85fr 1.9fr 1.1fr 1.3fr 1fr;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;border-top:1px solid var(--line2);transition:background var(--tdur);'+(s.evidenceRow===r.tag?'background:var(--accent-pale)':'background:transparent'),
       onSelect:()=>this.setState({evidenceRow:r.tag}) }));
-    const evidenceMap = {
-      'P-104':{doc:'SML-PID-STK-201.pdf',rev:'Rev 2',ref:'Sheet 1 · Grid C4',extracted:'P-104 · Stock Preparation Process Pump',conf:'High',why:'Tag and description read from the P&ID title block and matched to the equipment list entry.'},
-      'HV-104A':{doc:'SML-PID-STK-201.pdf',rev:'Rev 2',ref:'Sheet 1 · Grid B4',extracted:'HV-104A · Suction Isolation Valve',conf:'Medium',why:'Valve tag legible on drawing; class inferred from symbol and position upstream of P-104.'},
-      'HV-104B':{doc:'SML-PID-STK-201.pdf',rev:'Rev 2',ref:'Sheet 1 · Grid D5',extracted:'HV-104B · Discharge Isolation Valve',conf:'Medium',why:'Located downstream of the pump discharge; flagged for review against draft procedure.'},
-      'M-104':{doc:'Stock-Preparation-Equipment-List.xlsx',rev:'—',ref:'Row 42',extracted:'M-104 · P-104 Drive Motor',conf:'High',why:'Motor tag and rating taken directly from the structured equipment list.'},
-    };
-    const selectedEvidence = evidenceMap[s.evidenceRow] || {doc:'Stock-Preparation-Equipment-List.xlsx',rev:'—',ref:'Row reference',extracted:s.evidenceRow,conf:'High',why:'Value taken from the structured equipment list.'};
+    const evidenceMap = isSopFlow
+      ? {
+          '4.1':{doc:'SHOTTON_STOA117981_00_EN_Pulper_VC98130G (ID 25575) (1).pdf',rev:'Issue 00',ref:'pp. 142-143',extracted:'Verify pulper is electrically isolated and the rotor has fully stopped.',conf:'High',why:'The manual states this as a mandatory safety precondition ahead of any inspection work on the rotor chamber.'},
+          '4.2':{doc:'SHOTTON_STOA117981_00_EN_Pulper_VC98130G (ID 25575) (1).pdf',rev:'Issue 00',ref:'pp. 143-144',extracted:'Close dilution-water valve VC98130G before opening the inspection hatch.',conf:'High',why:'Valve and action are explicitly named in the isolation sequence before hatch access is allowed.'},
+          '4.3':{doc:'SHOTTON_STOA117981_00_EN_Pulper_VC98130G (ID 25575) (1).pdf',rev:'Issue 00',ref:'pp. 144-145',extracted:'Measure rotor clearance at three clock positions and record readings.',conf:'High',why:'The manual defines a measurement task rather than a general inspection note, so it should become a discrete procedural step.'},
+          '4.4':{doc:'SHOTTON_STOA117981_00_EN_Pulper_VC98130G (ID 25575) (1).pdf',rev:'Issue 00',ref:'pp. 145-147',extracted:'Inspect rotor bars and leading edges for wear, cracking, or impact damage.',conf:'Medium',why:'The inspection wording is explicit, but the acceptance criteria are split across later pages and need engineering interpretation.'},
+          '4.5':{doc:'SHOTTON_STOA117981_00_EN_Pulper_VC98130G (ID 25575) (1).pdf',rev:'Issue 00',ref:'p. 146',extracted:'Replace worn wear plates if measured clearance exceeds the OEM limit.',conf:'Medium',why:'The action is clear, but the threshold value is referenced indirectly in a dimensional table rather than repeated in the procedure text.'},
+          '4.6':{doc:'SHOTTON_STOA117981_00_EN_Pulper_VC98130G (ID 25575) (1).pdf',rev:'Issue 00',ref:'pp. 147-148',extracted:'Return to service after manual rotor jog and abnormal-noise check.',conf:'Low',why:'The restart condition is described narratively and would benefit from a clearer acceptance statement in the final SOP.'},
+        }
+      : {
+          'P-104':{doc:'SML-PID-STK-201.pdf',rev:'Rev 2',ref:'Sheet 1 · Grid C4',extracted:'P-104 · Stock Preparation Process Pump',conf:'High',why:'Tag and description read from the P&ID title block and matched to the equipment list entry.'},
+          'HV-104A':{doc:'SML-PID-STK-201.pdf',rev:'Rev 2',ref:'Sheet 1 · Grid B4',extracted:'HV-104A · Suction Isolation Valve',conf:'Medium',why:'Valve tag legible on drawing; class inferred from symbol and position upstream of P-104.'},
+          'HV-104B':{doc:'SML-PID-STK-201.pdf',rev:'Rev 2',ref:'Sheet 1 · Grid D5',extracted:'HV-104B · Discharge Isolation Valve',conf:'Medium',why:'Located downstream of the pump discharge; flagged for review against draft procedure.'},
+          'M-104':{doc:'Stock-Preparation-Equipment-List.xlsx',rev:'—',ref:'Row 42',extracted:'M-104 · P-104 Drive Motor',conf:'High',why:'Motor tag and rating taken directly from the structured equipment list.'},
+        };
+    const selectedEvidence = evidenceMap[s.evidenceRow] || (isSopFlow
+      ? {doc:'SHOTTON_STOA117981_00_EN_Pulper_VC98130G (ID 25575) (1).pdf',rev:'Issue 00',ref:'Procedure reference',extracted:s.evidenceRow,conf:'High',why:'Value taken directly from the OEM procedure manual.'}
+      : {doc:'Stock-Preparation-Equipment-List.xlsx',rev:'—',ref:'Row reference',extracted:s.evidenceRow,conf:'High',why:'Value taken from the structured equipment list.'});
     const selectedEvConf = this.chip(CONF[selectedEvidence.conf] || 'ok');
     const runCritique = ()=> this.runWithLoader('Running technical critique against evidence, standards and plant context…','critique',3000);
 
     // ---------- CRITIQUE ----------
-    const observationsRaw = [
-      {id:1,title:'Isolation valve reference conflicts with P&ID',cat:'Source conflict',equip:'P-104',cons:'High consequence',conf:'High confidence',kind:'danger',sources:2,pre:true,why:'Draft procedure references HV-104B. P&ID SML-PID-STK-201 identifies HV-104A as the upstream isolation valve.'},
-      {id:2,title:'OEM bearing interval differs from site strategy',cat:'Standard mismatch',equip:'P-104',cons:'Medium consequence',conf:'High confidence',kind:'warn',sources:2,pre:true,why:'OEM manual recommends monthly bearing inspection; site philosophy favours condition-based monitoring where vibration telemetry is available.'},
-      {id:3,title:'Mechanical-seal kit may be a duplicate material',cat:'Duplicate or redundancy',equip:'P-104',cons:'Medium consequence',conf:'Medium confidence',kind:'warn',sources:2,pre:true,why:'Seal kit appears under two supplier part numbers and may represent a duplicate material record.'},
-      {id:4,title:'Inconsistent equipment naming across sources',cat:'Low-confidence extraction',equip:'P-104',cons:'Low consequence',conf:'Medium confidence',kind:'neutral',sources:2,pre:false,why:'Equipment description differs between the equipment list and the P&ID.'},
-      {id:5,title:'Suction strainer not found in equipment list',cat:'Missing information',equip:'S-104',cons:'Low consequence',conf:'Low confidence',kind:'neutral',sources:1,pre:false,why:'Strainer S-104 appears on the P&ID but has no matching equipment-list entry.'},
-      {id:6,title:'No NPSH margin captured for commissioning',cat:'Optimisation opportunity',equip:'P-104',cons:'Low consequence',conf:'Medium confidence',kind:'neutral',sources:1,pre:false,why:'Consider capturing NPSH available versus required to support commissioning checks.'},
-    ];
+    const critiqueIntro = isSopFlow
+      ? 'Foundry compared the drafted procedure against manual evidence, safety requirements, and the selected engineering context to find ambiguous or unsafe instructions before publication.'
+      : 'Foundry compared the extracted draft with source evidence and the selected engineering context.';
+    const critiqueSummaryChips = (isSopFlow
+      ? [
+          { kind:'ok', label:'61 checks passed' },
+          { kind:'warn', label:'8 engineering observations' },
+          { kind:'danger', label:'4 procedural ambiguities' },
+          { kind:'warn', label:'2 unsafe operator phrases' },
+          { kind:'neutral', label:'1 coverage gap' },
+        ]
+      : [
+          { kind:'ok', label:'84 checks passed' },
+          { kind:'warn', label:'12 engineering observations' },
+          { kind:'danger', label:'3 conflicting sources' },
+          { kind:'neutral', label:'2 potential duplicates' },
+          { kind:'neutral', label:'1 possible coverage gap' },
+        ]).map(chip => ({
+          ...chip,
+          style:'display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:12px;font-size:13px;font-weight:700;' +
+            (chip.kind==='ok' ? 'background:var(--ok-pale);color:var(--ok-deep)' :
+             chip.kind==='warn' ? 'background:var(--warn-pale);color:var(--warn-deep)' :
+             chip.kind==='danger' ? 'background:var(--danger-pale);color:var(--danger-deep)' :
+             'background:var(--neutral-pale);color:var(--neutral-ink)'),
+        }));
+    const observationsRaw = isSopFlow
+      ? [
+          {id:'sop-1',title:'Isolation prerequisite is implied, not explicit',cat:'Safety ambiguity',equip:'Step 4.1',cons:'High consequence',conf:'High confidence',kind:'danger',sources:1,pre:true,why:'The manual describes isolation checks across two paragraphs. The draft needs an explicit lockout / verify-zero-energy gate before hatch access.'},
+          {id:'sop-2',title:'Rotor-clearance acceptance limit is not carried into the draft',cat:'Missing critical parameter',equip:'Step 4.3',cons:'High consequence',conf:'High confidence',kind:'danger',sources:1,pre:true,why:'The measurement step is present, but the pass / fail threshold remains buried in a later dimensional table rather than stated in the SOP.'},
+          {id:'sop-3',title:'Manual says "inspect if necessary" without a decision rule',cat:'Engineering judgement required',equip:'Step 4.4',cons:'Medium consequence',conf:'Medium confidence',kind:'warn',sources:1,pre:true,why:'The OEM wording leaves room for interpretation. The published SOP should define when wear-plate replacement becomes mandatory.'},
+          {id:'sop-4',title:'PPE wording does not align with current site standard',cat:'Standard mismatch',equip:'Prerequisites',cons:'Medium consequence',conf:'High confidence',kind:'warn',sources:2,pre:true,why:'The manual lists general maintenance PPE, but the site standard requires face protection during hatch-open inspection activities.'},
+          {id:'sop-5',title:'Restart check lacks a measurable acceptance statement',cat:'Low-confidence extraction',equip:'Step 4.6',cons:'Low consequence',conf:'Medium confidence',kind:'neutral',sources:1,pre:false,why:'The manual instructs the operator to listen for abnormal noise, but the draft does not state what constitutes a pass condition.'},
+          {id:'sop-6',title:'Consumables preparation is mentioned but not sequenced',cat:'Coverage gap',equip:'Preparation',cons:'Low consequence',conf:'Low confidence',kind:'neutral',sources:1,pre:false,why:'The manual references feeler gauges and inspection sheets in the appendices, but the draft has not turned that into a preparatory checklist step.'},
+        ]
+      : [
+          {id:1,title:'Isolation valve reference conflicts with P&ID',cat:'Source conflict',equip:'P-104',cons:'High consequence',conf:'High confidence',kind:'danger',sources:2,pre:true,why:'Draft procedure references HV-104B. P&ID SML-PID-STK-201 identifies HV-104A as the upstream isolation valve.'},
+          {id:2,title:'OEM bearing interval differs from site strategy',cat:'Standard mismatch',equip:'P-104',cons:'Medium consequence',conf:'High confidence',kind:'warn',sources:2,pre:true,why:'OEM manual recommends monthly bearing inspection; site philosophy favours condition-based monitoring where vibration telemetry is available.'},
+          {id:3,title:'Mechanical-seal kit may be a duplicate material',cat:'Duplicate or redundancy',equip:'P-104',cons:'Medium consequence',conf:'Medium confidence',kind:'warn',sources:2,pre:true,why:'Seal kit appears under two supplier part numbers and may represent a duplicate material record.'},
+          {id:4,title:'Inconsistent equipment naming across sources',cat:'Low-confidence extraction',equip:'P-104',cons:'Low consequence',conf:'Medium confidence',kind:'neutral',sources:2,pre:false,why:'Equipment description differs between the equipment list and the P&ID.'},
+          {id:5,title:'Suction strainer not found in equipment list',cat:'Missing information',equip:'S-104',cons:'Low consequence',conf:'Low confidence',kind:'neutral',sources:1,pre:false,why:'Strainer S-104 appears on the P&ID but has no matching equipment-list entry.'},
+          {id:6,title:'No NPSH margin captured for commissioning',cat:'Optimisation opportunity',equip:'P-104',cons:'Low consequence',conf:'Medium confidence',kind:'neutral',sources:1,pre:false,why:'Consider capturing NPSH available versus required to support commissioning checks.'},
+        ];
     const oa = s.obsActions || {};
     const segStyle = (on)=> on
       ? 'cursor:pointer;border:1px solid var(--accent);background:var(--accent-strong);color:#fff;font-weight:700;font-size:12.5px;padding:8px 15px;border-radius:10px;transition:all var(--tdur)'
@@ -1161,19 +1233,35 @@ class Component extends DCLogic {
         preLabel: o.pre? 'Selected for review' : 'Optional',
         aInspect: mk('inspect'), aInclude: mk('include'), aUnderstood: mk('understood') };
     });
-    const critiqueRefs = ['Maintenance Philosophy v2.1','Equipment Criticality Framework','Functional Location Naming Standard','Condition Monitoring Strategy'];
+    const critiqueRefs = isSopFlow
+      ? ['Pulper Manual Issue 00','Machine Isolation Standard','Maintenance Authoring Standard','Permits and LOTO Procedure']
+      : ['Maintenance Philosophy v2.1','Equipment Criticality Framework','Functional Location Naming Standard','Condition Monitoring Strategy'];
     const goPrioritise = ()=> this.runWithLoader('Prioritising review actions…','prioritise',1000);
 
     // ---------- PRIORITISE ----------
-    const queueRaw = [
-      {id:1,group:'now',priority:1,decision:'Confirm correct upstream isolation valve',equip:'P-104',reason:'Safety consequence; blocks SOP-STK-014 approval',conf:'High',assignee:'Sarah Mitchell',status:'Open',statusKind:'warn',pk:'danger',open:true},
-      {id:2,group:'now',priority:2,decision:'Resolve duplicate mechanical-seal material',equip:'P-104',reason:'Blocks BOM publication; medium consequence',conf:'Medium',assignee:'Sarah Mitchell',status:'Open',statusKind:'warn',pk:'warn',open:false},
-      {id:3,group:'next',priority:3,decision:'Confirm bearing inspection strategy',equip:'P-104',reason:'Standard mismatch; no safety block',conf:'High',assignee:'Unassigned',status:'Open',statusKind:'neutral',pk:'warn',open:false},
-      {id:4,group:'next',priority:4,decision:'Approve harmonised equipment naming',equip:'P-104',reason:'Consistency; low consequence',conf:'Medium',assignee:'Sarah Mitchell',status:'Assigned',statusKind:'neutral',pk:'neutral',open:false},
-      {id:5,group:'next',priority:5,decision:'Add missing suction strainer record',equip:'S-104',reason:'Completeness; low consequence',conf:'Low',assignee:'Unassigned',status:'Open',statusKind:'neutral',pk:'neutral',open:false},
-      {id:6,group:'defer',priority:6,decision:'Capture NPSH margin for commissioning',equip:'P-104',reason:'Optimisation opportunity',conf:'Medium',assignee:'Unassigned',status:'Deferred',statusKind:'neutral',pk:'neutral',open:false},
-      {id:7,group:'defer',priority:7,decision:'Review optional vibration alarm setpoints',equip:'P-104',reason:'Optimisation; not blocking',conf:'Low',assignee:'Unassigned',status:'Deferred',statusKind:'neutral',pk:'neutral',open:false},
-    ];
+    const prioritiseHeading = isSopFlow ? '6 procedure decisions require engineering review' : '7 decisions require engineering review';
+    const prioritiseIntro = isSopFlow
+      ? 'Review order considers operator safety, ambiguity in the OEM wording, procedural completeness, and whether the final SOP can be executed consistently on site.'
+      : 'Review order considers safety, equipment criticality, operational consequence, confidence, and downstream dependencies.';
+    const prioritiseFooter = isSopFlow ? 'Resolve the two blocking procedure decisions to enable publishing' : 'Resolve the two blocking decisions to enable publishing';
+    const queueRaw = isSopFlow
+      ? [
+          {id:'sop-1',group:'now',priority:1,decision:'Make lockout verification an explicit gate before hatch access',equip:'Step 4.1',reason:'Safety consequence; blocks SOP publication until explicit',conf:'High',assignee:'Sarah Mitchell',status:'Open',statusKind:'warn',pk:'danger',open:true},
+          {id:'sop-2',group:'now',priority:2,decision:'Confirm rotor-clearance acceptance limit to publish in the SOP',equip:'Step 4.3',reason:'Critical parameter missing from drafted work instruction',conf:'High',assignee:'Sarah Mitchell',status:'Open',statusKind:'warn',pk:'danger',open:false},
+          {id:'sop-3',group:'next',priority:3,decision:'Define wear-plate replacement trigger for inspection findings',equip:'Step 4.4',reason:'Manual wording is advisory; SOP needs a decision rule',conf:'Medium',assignee:'Sarah Mitchell',status:'Assigned',statusKind:'neutral',pk:'warn',open:false},
+          {id:'sop-4',group:'next',priority:4,decision:'Align PPE wording with the site hatch-open inspection standard',equip:'Prerequisites',reason:'Standard mismatch; moderate consequence',conf:'High',assignee:'Unassigned',status:'Open',statusKind:'neutral',pk:'warn',open:false},
+          {id:'sop-5',group:'defer',priority:5,decision:'Add a preparation checklist for gauges, forms, and consumables',equip:'Preparation',reason:'Improves repeatability but does not block issue 1',conf:'Medium',assignee:'Unassigned',status:'Deferred',statusKind:'neutral',pk:'neutral',open:false},
+          {id:'sop-6',group:'defer',priority:6,decision:'Clarify restart acceptance wording for abnormal-noise check',equip:'Step 4.6',reason:'Low consequence; can be refined in the next revision',conf:'Low',assignee:'Unassigned',status:'Deferred',statusKind:'neutral',pk:'neutral',open:false},
+        ]
+      : [
+          {id:1,group:'now',priority:1,decision:'Confirm correct upstream isolation valve',equip:'P-104',reason:'Safety consequence; blocks SOP-STK-014 approval',conf:'High',assignee:'Sarah Mitchell',status:'Open',statusKind:'warn',pk:'danger',open:true},
+          {id:2,group:'now',priority:2,decision:'Resolve duplicate mechanical-seal material',equip:'P-104',reason:'Blocks BOM publication; medium consequence',conf:'Medium',assignee:'Sarah Mitchell',status:'Open',statusKind:'warn',pk:'warn',open:false},
+          {id:3,group:'next',priority:3,decision:'Confirm bearing inspection strategy',equip:'P-104',reason:'Standard mismatch; no safety block',conf:'High',assignee:'Unassigned',status:'Open',statusKind:'neutral',pk:'warn',open:false},
+          {id:4,group:'next',priority:4,decision:'Approve harmonised equipment naming',equip:'P-104',reason:'Consistency; low consequence',conf:'Medium',assignee:'Sarah Mitchell',status:'Assigned',statusKind:'neutral',pk:'neutral',open:false},
+          {id:5,group:'next',priority:5,decision:'Add missing suction strainer record',equip:'S-104',reason:'Completeness; low consequence',conf:'Low',assignee:'Unassigned',status:'Open',statusKind:'neutral',pk:'neutral',open:false},
+          {id:6,group:'defer',priority:6,decision:'Capture NPSH margin for commissioning',equip:'P-104',reason:'Optimisation opportunity',conf:'Medium',assignee:'Unassigned',status:'Deferred',statusKind:'neutral',pk:'neutral',open:false},
+          {id:7,group:'defer',priority:7,decision:'Review optional vibration alarm setpoints',equip:'P-104',reason:'Optimisation; not blocking',conf:'Low',assignee:'Unassigned',status:'Deferred',statusKind:'neutral',pk:'neutral',open:false},
+        ];
     const resolvedDecisionIds = s.resolvedDecisionIds || [];
     const queueDeco = queueRaw.filter(q=>!resolvedDecisionIds.includes(q.id)).map(q=>({...q, statusStyle:this.chip(q.statusKind),
       priStyle:'width:32px;height:32px;flex:none;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;font-family:Manrope;'+(q.pk==='danger'?'background:var(--danger-pale);color:var(--danger-deep)':q.pk==='warn'?'background:var(--warn-pale);color:var(--warn-deep)':'background:var(--neutral-pale);color:var(--neutral-ink)'),
@@ -1184,6 +1272,68 @@ class Component extends DCLogic {
     const preparePublish = ()=> this.nav('publish');
 
     // ---------- DECISION ----------
+    const decisionViewMap = isSopFlow
+      ? {
+          'sop-1': {
+            title:'Make zero-energy verification explicit before opening the pulper inspection hatch',
+            priority:'1',
+            consequence:'High consequence',
+            confidence:'High confidence',
+            blocks:'Blocks SOP-STK-014',
+            question:'Should the SOP explicitly require lockout, try-start, and rotor-stop verification before the hatch-open step begins?',
+            recommendation:'Insert a mandatory zero-energy verification gate ahead of the hatch-open instruction, rather than leaving it implied in the surrounding paragraphs.',
+            rationale:'The manual spreads the isolation wording across narrative text. The published SOP should turn that into a single unmissable gate to reduce operator ambiguity.',
+            evidenceLeft:{ title:'Pulper Manual Issue 00', meta:'pp. 142-143', highlight:'verify zero energy', caption:'manual excerpt', body:'Manual text describes isolation and rotor-stop confirmation before inspection work starts.' },
+            evidenceRight:{ title:'Draft SOP-STK-014', meta:'Draft · Step 4.1', excerpt:'Open inspection hatch and begin rotor inspection once the unit has been stopped and isolated.', caption:'draft excerpt', body:'The draft compresses the isolation requirement into general wording instead of an explicit verification step.' },
+            affectedOutput:'SOP-STK-014',
+            affectedEquipment:'VC98130G Pulper',
+            downstreamEffect:'Blocks publication',
+            relatedProcess:'Pulper rotor clearance and condition inspection',
+            editLabel:'Zero-energy verification wording',
+            editDefault:'Verify lockout applied, try-start complete, and rotor fully stopped before hatch access.',
+          },
+          'sop-2': {
+            title:'Confirm the rotor-clearance acceptance limit before publishing the SOP',
+            priority:'2',
+            consequence:'High consequence',
+            confidence:'High confidence',
+            blocks:'Blocks SOP-STK-014',
+            question:'What rotor-clearance limit should the published SOP instruct engineers to use when deciding whether wear-plate replacement is required?',
+            recommendation:'Promote the OEM dimensional limit from the appendix table into the body of the drafted measurement step so the operator does not need to infer it.',
+            rationale:'The current draft captures the measurement action but not the acceptance criterion. Without the threshold, the procedure cannot produce a consistent decision in the field.',
+            evidenceLeft:{ title:'Pulper Manual Issue 00', meta:'p. 146', highlight:'clearance limit', caption:'dimensional table', body:'The OEM table states the permissible rotor-clearance threshold used to determine whether corrective action is required.' },
+            evidenceRight:{ title:'Draft SOP-STK-014', meta:'Draft · Step 4.3', excerpt:'Measure rotor clearance at three positions and record the values on the inspection sheet.', caption:'draft excerpt', body:'The draft tells the engineer to measure, but not how to interpret the result.' },
+            affectedOutput:'SOP-STK-014',
+            affectedEquipment:'VC98130G Pulper',
+            downstreamEffect:'Blocks publication',
+            relatedProcess:'Pulper rotor clearance and condition inspection',
+            editLabel:'Rotor-clearance acceptance limit',
+            editDefault:'Replace wear plates if measured clearance exceeds the OEM limit stated in Table 7.',
+          },
+        }
+      : {
+          default: {
+            title:'Confirm the upstream isolation valve for P-104',
+            priority:'1',
+            consequence:'High consequence',
+            confidence:'High confidence',
+            blocks:'Blocks SOP-STK-014',
+            question:'Which valve should the isolation procedure reference as the upstream mechanical isolation point for P-104?',
+            recommendation:'Replace HV-104B with HV-104A in step 4 of the draft procedure.',
+            rationale:'P&ID SML-PID-STK-201 identifies HV-104A immediately upstream of P-104. HV-104B appears downstream of the pump and would not provide the isolation described by the procedure.',
+            evidenceLeft:{ title:'SML-PID-STK-201.pdf', meta:'Rev 2 · Sheet 1 · Grid B4', highlight:'HV-104A · upstream', caption:'P&ID crop', body:'Extracted: HV-104A shown on the suction line immediately upstream of pump P-104.' },
+            evidenceRight:{ title:'Draft SOP-STK-014', meta:'Draft · Step 4', excerpt:'Step 4. Close the upstream isolation valve HV-104B and verify zero flow before draining the pump casing.', caption:'SOP excerpt', body:'Conflicts with drawing evidence — HV-104B is downstream of the pump discharge.' },
+            affectedOutput:'SOP-STK-014',
+            affectedEquipment:'P-104',
+            downstreamEffect:'Blocks publication',
+            relatedProcess:'P-104 Isolation and Restart',
+            editLabel:'Upstream isolation valve',
+            editDefault:'HV-104A',
+          },
+        };
+    const decisionView = isSopFlow
+      ? (decisionViewMap[s.activeDecisionId] || decisionViewMap['sop-1'])
+      : decisionViewMap.default;
     const recordDecision = (choice, rationale, resolveDecision)=> this.setState({
       decisionRecorded:true,
       decisionChoice:choice,
@@ -1323,13 +1473,13 @@ class Component extends DCLogic {
       configLabel, configSources, hasSources, addSources, handleSourceFilesChange, handleSourceDragOver, handleSourceDrop, acceptHint, contextRefs, targetOptions, startExtraction,
       isLoading: !!s.loading, loadingLabel: s.loading ? s.loading.label : '',
       // extract
-      extractRows, selectedEvidence, selectedEvConf, runCritique,
+      extractHeading, extractSummaryCards, extractColumns, extractSearchLabel, extractHelperLabel, extractRows, selectedEvidence, selectedEvConf, runCritique,
       // critique
-      observations, critiqueRefs, goPrioritise,
+      critiqueIntro, critiqueSummaryChips, observations, critiqueRefs, goPrioritise,
       // prioritise
-      queueNow, queueNext, queueDefer, preparePublish,
+      prioritiseHeading, prioritiseIntro, prioritiseFooter, queueNow, queueNext, queueDefer, preparePublish,
       // decision
-      decisionRecorded: s.decisionRecorded, decisionChoice: s.decisionChoice, decisionRationale: s.decisionRationale, acceptRec, openEdit, openReject, specialist, cancelDecision, confirmEdit, confirmReject, backToQueue, decisionContinue,
+      decisionView, decisionRecorded: s.decisionRecorded, decisionChoice: s.decisionChoice, decisionRationale: s.decisionRationale, acceptRec, openEdit, openReject, specialist, cancelDecision, confirmEdit, confirmReject, backToQueue, decisionContinue,
       decisionEdit: s.decisionMode==='edit', decisionReject: s.decisionMode==='reject',
       // publish
       pub, checklist, publishExports, published: s.published, notPublished: !s.published, publishOutput, viewInAI, viewProcessRecord, downloadPublishedExport,
