@@ -202,7 +202,7 @@ button{font-family:inherit}
       <div style="max-width:860px;margin:0 auto;padding:34px 28px 72px;animation:fadeUp .4s ease">
         <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2);margin-bottom:14px"><a onClick="{{ goCreate }}" style="cursor:pointer;color:var(--ink2)">Create</a><span>/</span><span style="color:var(--ink)">{{ configLabel }}</span></div>
         <h1 style="font-size:30px">Set up your {{ configLabel }}</h1>
-        <p style="color:var(--ink2);font-size:14.5px;margin-top:10px;line-height:1.5">Name the process, add source material, and choose the plant context Foundry should use during AI Review.</p>
+        <p style="color:var(--ink2);font-size:14.5px;margin-top:10px;line-height:1.5">Name the process, add source material, and choose the plant context Foundry should use during Review.</p>
 
         <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--info);padding:26px;margin-top:26px">
           <div style="font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--ink3);margin-bottom:16px">PROCESS DETAILS</div>
@@ -235,7 +235,7 @@ button{font-family:inherit}
 
         <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--info);padding:26px;margin-top:20px">
           <div style="font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--ink3);margin-bottom:6px">ENGINEERING CONTEXT</div>
-          <p style="font-size:13px;color:var(--ink2);margin-bottom:16px;line-height:1.5">Foundry uses these references during AI Review. They remain visible as evidence throughout the process.</p>
+          <p style="font-size:13px;color:var(--ink2);margin-bottom:16px;line-height:1.5">Foundry uses these references during Review. They remain visible as evidence throughout the process.</p>
           <div style="display:flex;flex-wrap:wrap;gap:10px">
             <sc-for list="{{ contextRefs }}" as="r" hint-placeholder-count="5">
               <button onClick="{{ r.onToggle }}" style="{{ r.style }}"><span style="{{ r.boxStyle }}"><sc-if value="{{ r.selected }}">✓</sc-if></span>{{ r.label }}</button>
@@ -361,7 +361,7 @@ button{font-family:inherit}
 
         <div style="display:flex;justify-content:flex-end;margin-top:26px">
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-            <button onClick="{{ proceedToReview }}" style="{{ extractProceedStyle }}">{{ extractProceedLabel }} <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button onClick="{{ proceedToReview }}" style="{{ extractProceedStyle }}">{{ extractProceedLabel }} <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <span style="font-size:12.5px;color:var(--ink2);text-align:right">{{ extractProceedHelp }}</span>
           </div>
         </div>
@@ -379,7 +379,7 @@ button{font-family:inherit}
         </div>
         <div style="display:flex;gap:12px;margin-top:20px"><sc-for list="{{ procStages }}" as="st" hint-placeholder-count="4"><div style="{{ st.boxStyle }}"><div style="{{ st.numStyle }}">{{ st.num }}</div><div><div style="font-size:13px;font-weight:600;color:{{ st.textColor }}">{{ st.label }}</div><div style="font-size:10.5px;color:var(--ink3)">{{ st.stateLabel }}</div></div></div></sc-for></div>
 
-        <div style="margin-top:30px;display:flex;align-items:center;gap:12px"><div style="width:34px;height:34px;border-radius:10px;background:var(--ok-pale);color:var(--ok-deep);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h2 style="font-size:22px">AI review findings ready</h2></div>
+        <div style="margin-top:30px;display:flex;align-items:center;gap:12px"><div style="width:34px;height:34px;border-radius:10px;background:var(--ok-pale);color:var(--ok-deep);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h2 style="font-size:22px">Review findings ready</h2></div>
         <p style="color:var(--ink2);font-size:14.5px;margin-top:10px;line-height:1.5;max-width:720px">{{ critiqueIntro }}</p>
 
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">
@@ -413,7 +413,7 @@ button{font-family:inherit}
             </sc-if>
             <sc-if value="{{ critiqueAllResolved }}">
               <div style="background:var(--ok-pale);border:1px solid var(--ok);border-radius:var(--radius-sm);padding:20px">
-                <div style="font-size:15px;font-weight:700;color:var(--ok-deep)">All AI review findings have been treated</div>
+                <div style="font-size:15px;font-weight:700;color:var(--ok-deep)">All review findings have been treated</div>
                 <p style="font-size:13px;color:var(--ink2);line-height:1.5;margin-top:8px">The junior reviewer has accepted, edited, or rejected every recommendation. The senior approver can now review the treatment log.</p>
               </div>
             </sc-if>
@@ -432,7 +432,7 @@ button{font-family:inherit}
 
         <div style="display:flex;justify-content:flex-end;align-items:flex-start;gap:14px;margin-top:26px">
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-            <button onClick="{{ goPrioritise }}" style="{{ critiqueContinueStyle }}" style-hover="box-shadow:var(--pillow-lift)">Continue to approval <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button onClick="{{ goPrioritise }}" style="{{ critiqueContinueStyle }}" style-hover="box-shadow:var(--pillow-lift)">Continue to approve <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <span style="font-size:12.5px;color:var(--ink2);text-align:right">{{ critiqueContinueHelp }}</span>
           </div>
         </div>
@@ -520,7 +520,7 @@ button{font-family:inherit}
                   </div>
                 </sc-for>
                 <sc-if value="{{ approvalAllResolved }}">
-                  <div style="padding:18px;font-size:13px;color:var(--ok-deep);background:var(--ok-pale)">Every AI review finding has been treated. This output is ready for senior sign-off.</div>
+                  <div style="padding:18px;font-size:13px;color:var(--ok-deep);background:var(--ok-pale)">Every review finding has been treated. This output is ready for senior sign-off.</div>
                 </sc-if>
               </div>
             </div>
@@ -547,20 +547,20 @@ button{font-family:inherit}
 
         <div style="display:flex;align-items:center;gap:14px;margin-top:26px">
           <button onClick="{{ approveForPublish }}" style="{{ approveForPublishStyle }}">Approve and continue to publish <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button onClick="{{ sendBackToReview }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:14px;padding:13px 22px;border-radius:13px">Send back to AI Review</button>
+          <button onClick="{{ sendBackToReview }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:14px;padding:13px 22px;border-radius:13px">Send back to review</button>
           <span style="font-size:12.5px;color:var(--ink2)">{{ approvalFooter }}</span>
         </div>
 
         <sc-if value="{{ showSendBackModal }}">
           <div style="position:fixed;inset:0;background:rgba(15,18,30,.22);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:24px;z-index:30">
             <div style="width:min(560px,100%);background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--pillow-lift);padding:24px 24px 22px">
-              <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink3)">SEND BACK TO AI REVIEW</div>
+              <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink3)">SEND BACK TO REVIEW</div>
               <h3 style="font-size:24px;margin-top:8px">What should the junior reviewer revisit?</h3>
-              <p style="font-size:13px;color:var(--ink2);line-height:1.55;margin-top:8px">This note will appear in the approval step and the AI review queue so the reviewer knows exactly what to fix.</p>
+              <p style="font-size:13px;color:var(--ink2);line-height:1.55;margin-top:8px">This note will appear in the approval step and the review queue so the reviewer knows exactly what to fix.</p>
               <textarea id="approval-sendback-reason" rows="4" defaultValue="{{ sendBackDraftText }}" placeholder="Explain what needs to be revisited before approval..." style="width:100%;margin-top:16px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:13.5px;color:var(--ink);font-family:inherit;resize:vertical"></textarea>
               <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:18px">
                 <button onClick="{{ cancelSendBackModal }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:14px;padding:12px 20px;border-radius:13px">Cancel</button>
-                <button onClick="{{ confirmSendBackToReview }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:13px;box-shadow:var(--pillow)">Send back to AI Review</button>
+                <button onClick="{{ confirmSendBackToReview }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:13px;box-shadow:var(--pillow)">Send back to review</button>
               </div>
             </div>
           </div>
@@ -570,7 +570,7 @@ button{font-family:inherit}
 
     <sc-if value="{{ show.decision }}">
       <div style="max-width:940px;margin:0 auto;padding:26px 28px 72px;animation:fadeUp .35s ease">
-        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2);margin-bottom:14px"><a onClick="{{ goProcesses }}" style="cursor:pointer;color:var(--ink2)">Processes</a><span>/</span><a onClick="{{ backToQueue }}" style="cursor:pointer;color:var(--ink2)">{{ proc.name }}</a><span>/</span><span style="color:var(--ink)">AI Review</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2);margin-bottom:14px"><a onClick="{{ goProcesses }}" style="cursor:pointer;color:var(--ink2)">Processes</a><span>/</span><a onClick="{{ backToQueue }}" style="cursor:pointer;color:var(--ink2)">{{ proc.name }}</a><span>/</span><span style="color:var(--ink)">Review</span></div>
         <h1 style="font-size:28px">{{ decisionView.title }}</h1>
         <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:14px">
           <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:11px;background:var(--danger-pale);color:var(--danger-deep);font-weight:700;font-size:12.5px"><span style="width:20px;height:20px;border-radius:6px;background:var(--danger-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px">{{ decisionView.priority }}</span>Priority</span>
@@ -617,6 +617,63 @@ button{font-family:inherit}
           </div>
         </div>
 
+        <div style="margin-top:20px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink3);margin-bottom:12px">SOURCE SCREENSHOT AND MODEL GUESSES</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--info);padding:16px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px">
+                <div>
+                  <div style="font-size:12.5px;font-weight:700">{{ reviewAssist.screenshotTitle }}</div>
+                  <div style="font-size:10.5px;color:var(--ink3);margin-top:3px">{{ reviewAssist.screenshotMeta }}</div>
+                </div>
+                <span style="padding:6px 11px;border-radius:10px;background:var(--accent-pale);color:var(--accent-strong);font-size:11.5px;font-weight:700">{{ reviewAssist.screenshotTag }}</span>
+              </div>
+              <div style="height:190px;border-radius:12px;background:linear-gradient(180deg,#f7f5ef 0%,#ece7db 100%);border:1px solid var(--line);position:relative;overflow:hidden">
+                <sc-if value="{{ reviewAssist.screenshotImage }}">
+                  <div style="position:absolute;inset:0;background-image:url('{{ reviewAssist.screenshotImage }}');background-size:cover;background-position:center;filter:contrast(1.02) saturate(.92)"></div>
+                  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.22) 100%)"></div>
+                </sc-if>
+                <sc-if value="{{ !reviewAssist.screenshotImage }}">
+                  <div style="position:absolute;inset:0;opacity:.7;background-image:linear-gradient(to right, rgba(72,82,112,.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(72,82,112,.09) 1px, transparent 1px);background-size:26px 26px"></div>
+                  <div style="position:absolute;left:8%;top:18%;right:10%;height:3px;background:#6f7a8f"></div>
+                  <div style="position:absolute;left:16%;top:36%;width:42%;height:3px;background:#6f7a8f"></div>
+                  <div style="position:absolute;right:14%;top:32%;width:3px;height:40%;background:#6f7a8f"></div>
+                  <div style="position:absolute;left:28%;bottom:18%;width:36%;height:3px;background:#6f7a8f"></div>
+                </sc-if>
+                <div style="position:absolute;left:34%;top:30%;width:120px;height:54px;border:2px solid var(--danger);border-radius:10px;background:rgba(245,108,108,.12);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(245,108,108,.12)">
+                  <span class="mono" style="font-size:11px;color:var(--danger-deep);font-weight:700">{{ reviewAssist.screenshotTag }}</span>
+                </div>
+                <div style="position:absolute;left:12px;top:10px;font-size:9.5px;color:var(--ink3)" class="mono">P&amp;ID / source crop</div>
+                <div style="position:absolute;right:12px;bottom:10px;font-size:9.5px;color:var(--ink3)" class="mono">highlighted review area</div>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);line-height:1.45;margin-top:10px">The highlighted crop shows the exact source region the model used for this finding, so the reviewer can compare the recommendation against the document evidence directly.</p>
+            </div>
+
+            <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--info);padding:16px">
+              <div style="font-size:12.5px;font-weight:700">Model best guesses</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:4px">Choose a likely answer, or enter the actual answer if you know better.</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+                <sc-for list="{{ reviewAssist.guesses }}" as="guess" hint-placeholder-count="3">
+                  <button onClick="{{ guess.onSelect }}" style="cursor:pointer;text-align:left;border:1px solid var(--line);background:var(--card2);padding:12px 13px;border-radius:12px">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                      <div style="font-size:13px;font-weight:600;color:var(--ink)">{{ guess.value }}</div>
+                      <span style="{{ guess.confidenceStyle }}">{{ guess.confidenceLabel }}</span>
+                    </div>
+                    <div style="font-size:11px;color:var(--ink3);margin-top:5px">Use this answer</div>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+                <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:7px">Actual answer if known</label>
+                <input id="review-custom-answer" defaultValue="{{ decisionAnswerDraft }}" placeholder="Type the actual answer..." style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:14px;color:var(--ink);font-family:inherit"/>
+                <div style="display:flex;justify-content:flex-end;margin-top:12px">
+                  <button onClick="{{ useCustomReviewAnswer }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:13px;padding:10px 16px;border-radius:11px">Use custom answer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:20px;padding:18px 20px;background:var(--card2);border:1px solid var(--line);border-radius:var(--radius-sm)">
           <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">AFFECTED OUTPUT</div><div style="font-size:13px;font-weight:600;margin-top:3px">{{ decisionView.affectedOutput }}</div></div>
           <div><div style="font-size:10.5px;color:var(--ink3);font-weight:700">AFFECTED EQUIPMENT</div><div style="font-size:13px;font-weight:600;margin-top:3px">{{ decisionView.affectedEquipment }}</div></div>
@@ -639,7 +696,7 @@ button{font-family:inherit}
           <div style="margin-top:22px;background:var(--card);border:1px solid var(--accent);border-radius:var(--radius-sm);box-shadow:var(--pillow);padding:22px">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">Edit the referenced value</div>
             <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:7px">{{ decisionView.editLabel }}</label>
-            <input id="dec-edit-val" defaultValue="{{ decisionView.editDefault }}" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:14px;color:var(--ink);font-family:inherit"/>
+            <input id="dec-edit-val" defaultValue="{{ decisionEditDefault }}" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:14px;color:var(--ink);font-family:inherit"/>
             <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin:14px 0 7px">Reason for change (required)</label>
             <textarea id="dec-edit-rat" rows="3" placeholder="Explain why the drafted value is being changed…" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:13.5px;color:var(--ink);font-family:inherit;resize:vertical"></textarea>
             <div style="display:flex;gap:12px;margin-top:16px">
@@ -670,14 +727,14 @@ button{font-family:inherit}
               <div><div style="font-size:10.5px;color:var(--ok-deep);opacity:.7;font-weight:700">RATIONALE</div><div style="font-size:13px;font-weight:600;margin-top:3px;color:var(--ink)">{{ decisionRationale }}</div></div>
             </div>
             <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:18px">
-              <button onClick="{{ backToQueue }}" style="cursor:pointer;border:1px solid var(--ok);background:transparent;color:var(--ok-deep);font-weight:600;font-size:14px;padding:13px 22px;border-radius:13px">Back to AI review queue</button>
-              <button onClick="{{ decisionContinue }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:14px;padding:13px 24px;border-radius:13px;box-shadow:var(--pillow);display:inline-flex;align-items:center;gap:8px">Continue to approval <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button onClick="{{ backToQueue }}" style="cursor:pointer;border:1px solid var(--ok);background:transparent;color:var(--ok-deep);font-weight:600;font-size:14px;padding:13px 22px;border-radius:13px">Back to review queue</button>
+              <button onClick="{{ decisionContinue }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:14px;padding:13px 24px;border-radius:13px;box-shadow:var(--pillow);display:inline-flex;align-items:center;gap:8px">Continue to approve <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
           </div>
         </sc-if>
 
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
-          <button onClick="{{ backToQueue }}" style="cursor:pointer;border:none;background:transparent;color:var(--ink2);font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:7px">← Back to AI review</button>
+          <button onClick="{{ backToQueue }}" style="cursor:pointer;border:none;background:transparent;color:var(--ink2);font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:7px">← Back to review</button>
           <div style="display:flex;gap:10px"><button onClick="{{ backToQueue }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:13px;padding:9px 16px;border-radius:11px">Previous decision</button><button onClick="{{ backToQueue }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:13px;padding:9px 16px;border-radius:11px">Next decision</button></div>
         </div>
       </div>
@@ -758,7 +815,7 @@ button{font-family:inherit}
                   <div style="display:flex;justify-content:space-between"><span style="color:var(--ink3)">Owner</span><span style="font-weight:600">Sarah Mitchell</span></div>
                 </div>
               </div>
-              <button onClick="{{ backToApproval }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:14px;padding:14px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:9px">Back to approval</button>
+              <button onClick="{{ backToApproval }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:14px;padding:14px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:9px">Back to approve</button>
               <button onClick="{{ publishOutput }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:15px;padding:15px;border-radius:14px;box-shadow:var(--pillow);display:flex;align-items:center;justify-content:center;gap:9px;transition:all var(--tdur)" style-hover="box-shadow:var(--pillow-lift)">Publish approved output <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
           </div>
@@ -1022,6 +1079,112 @@ const EXPORT_DOWNLOAD_FILES = {
 
 const PROCESS_IDS_BY_OUTPUT = { hierarchy: 'proc-hier', sop: 'proc-sop', bom: 'proc-bom' };
 
+const REVIEW_ASSIST_CATALOG = {
+  'hier-1': {
+    screenshotTitle: 'P&ID screenshot',
+    screenshotMeta: 'Grid C4 · hierarchy branch label',
+    screenshotTag: 'Process Water',
+    screenshotImage: './review-pid-screenshot.png',
+    guesses: [
+      { value: 'SML-STK-PW', confidence: 60 },
+      { value: 'SML-STK-PROC-WATER', confidence: 30 },
+      { value: 'SML-STK-WTR', confidence: 10 },
+    ],
+  },
+  'hier-2': {
+    screenshotTitle: 'P&ID screenshot',
+    screenshotMeta: 'Drive package beside P-104',
+    screenshotTag: 'M-104',
+    screenshotImage: './review-pid-screenshot.png',
+    guesses: [
+      { value: 'Drive motor linked to P-104', confidence: 60 },
+      { value: 'Separate peer asset under Process Water', confidence: 30 },
+      { value: 'Relationship unknown pending motor schedule', confidence: 10 },
+    ],
+  },
+  'hier-3': {
+    screenshotTitle: 'P&ID screenshot',
+    screenshotMeta: 'Grid B3 · inline suction symbol',
+    screenshotTag: 'S-104',
+    screenshotImage: './review-pid-screenshot.png',
+    guesses: [
+      { value: 'S-104 suction strainer', confidence: 60 },
+      { value: 'Temporary basket strainer note only', confidence: 30 },
+      { value: 'No governed asset should be created', confidence: 10 },
+    ],
+  },
+  'sop-1': {
+    screenshotTitle: 'Manual screenshot',
+    screenshotMeta: 'pp. 142-143 · safety precondition',
+    screenshotTag: 'Zero energy',
+    guesses: [
+      { value: 'Verify lockout, try-start, and full rotor stop before hatch access', confidence: 60 },
+      { value: 'Verify lockout and motor stop only', confidence: 30 },
+      { value: 'General isolation wording is sufficient', confidence: 10 },
+    ],
+  },
+  'sop-2': {
+    screenshotTitle: 'Manual screenshot',
+    screenshotMeta: 'p. 146 · dimensional table',
+    screenshotTag: 'Clearance limit',
+    guesses: [
+      { value: 'Promote the OEM clearance limit into Step 4.3', confidence: 60 },
+      { value: 'Reference Table 7 without repeating the limit', confidence: 30 },
+      { value: 'Leave the threshold out of the SOP body', confidence: 10 },
+    ],
+  },
+  'sop-3': {
+    screenshotTitle: 'Manual screenshot',
+    screenshotMeta: 'pp. 145-147 · advisory wording',
+    screenshotTag: 'If necessary',
+    guesses: [
+      { value: 'Tie replacement to measured clearance and visible wear', confidence: 60 },
+      { value: 'Keep OEM advisory wording unchanged', confidence: 30 },
+      { value: 'Escalate all wear findings to engineering review', confidence: 10 },
+    ],
+  },
+  'sop-4': {
+    screenshotTitle: 'Site standard screenshot',
+    screenshotMeta: 'Inspection PPE standard',
+    screenshotTag: 'Face protection',
+    guesses: [
+      { value: 'Use site-standard PPE wording including face protection', confidence: 60 },
+      { value: 'Keep general maintenance PPE wording', confidence: 30 },
+      { value: 'Require only gloves and eye protection', confidence: 10 },
+    ],
+  },
+  'bom-1': {
+    screenshotTitle: 'ERP screenshot',
+    screenshotMeta: 'Seal kit material comparison',
+    screenshotTag: 'Primary material',
+    guesses: [
+      { value: 'Keep ERP primary material and store OEM number as alias', confidence: 60 },
+      { value: 'Publish the OEM number as canonical', confidence: 30 },
+      { value: 'Create a new duplicate stock line', confidence: 10 },
+    ],
+  },
+  'bom-2': {
+    screenshotTitle: 'Policy screenshot',
+    screenshotMeta: 'Startup-critical stock rule',
+    screenshotTag: 'Critical spares',
+    guesses: [
+      { value: 'Commissioning-critical', confidence: 60 },
+      { value: 'Routine maintenance spare', confidence: 30 },
+      { value: 'Do not stock before startup', confidence: 10 },
+    ],
+  },
+  'bom-3': {
+    screenshotTitle: 'ERP screenshot',
+    screenshotMeta: 'Description normalization',
+    screenshotTag: 'Shaft sleeve',
+    guesses: [
+      { value: 'Shaft sleeve stainless steel', confidence: 60 },
+      { value: 'Shaft sleeve', confidence: 30 },
+      { value: 'Sleeve, pump shaft, stainless', confidence: 10 },
+    ],
+  },
+};
+
 const FLOW_CATALOG = {
   hierarchy: {
     output: 'Asset Hierarchy',
@@ -1043,7 +1206,7 @@ const FLOW_CATALOG = {
       ],
       completionCopyPending: 'Can only complete 75% with the currently available P&ID. Need an equipment list export, the naming standard, and the motor schedule to finish the hierarchy confidently.',
       completionCopyComplete: 'Requested source files were supplied. Foundry can now reconcile names, missing children, and parent-child assignments against the full source pack.',
-      nextStepPending: 'You can upload the requested files for full coverage, or continue to AI Review with a partial hierarchy draft.',
+      nextStepPending: 'You can upload the requested files for full coverage, or continue to Review with a partial hierarchy draft.',
       nextStepComplete: 'The junior reviewer can now inspect the extracted hierarchy and AI corrections before senior approval.',
       completenessPending: '75% complete',
       completenessComplete: '100% complete',
@@ -1163,7 +1326,7 @@ const FLOW_CATALOG = {
       ],
       completionCopyPending: 'Can only complete 75% with the current manual. Need the site lockout standard, current PPE standard, and dimensional appendix to finish a publishable site SOP.',
       completionCopyComplete: 'Requested standards and appendix material were added. Foundry can now align the draft to site-safe wording and explicit acceptance limits.',
-      nextStepPending: 'You can upload the requested files for a fuller draft, or continue to AI Review with the current extraction.',
+      nextStepPending: 'You can upload the requested files for a fuller draft, or continue to Review with the current extraction.',
       nextStepComplete: 'The junior reviewer can now compare the SOP draft against the evidence, AI findings, and site standards before senior approval.',
       completenessPending: '75% complete',
       completenessComplete: '100% complete',
@@ -1306,7 +1469,7 @@ const FLOW_CATALOG = {
       ],
       completionCopyPending: 'Can only complete 68% with the current source pack. Need the ERP material master and the commissioning spares policy to finish a governed BOM.',
       completionCopyComplete: 'Requested ERP and policy inputs were supplied. Foundry can now reconcile duplicate numbers and criticality with the source-of-truth records.',
-      nextStepPending: 'You can upload the requested files for fuller BOM coverage, or continue to AI Review with the current draft.',
+      nextStepPending: 'You can upload the requested files for fuller BOM coverage, or continue to Review with the current draft.',
       nextStepComplete: 'The junior reviewer can now validate the extracted BOM before senior approval.',
       completenessPending: '68% complete',
       completenessComplete: '100% complete',
@@ -1506,6 +1669,7 @@ class Component extends DCLogic {
     critiqueFilter: 'all',
     sendBackModalOpen: false,
     sendBackDraft: '',
+    decisionAnswerDraft: '',
     processRuntime: clone(SEEDED_PROCESS_RUNTIME),
   };
 
@@ -1561,7 +1725,7 @@ class Component extends DCLogic {
   }
 
   buildStages(page) {
-    const labels = ['Extract', 'AI Review', 'Approval', 'Publish'];
+    const labels = ['Extract', 'Review', 'Approve', 'Publish'];
     const map = { extract: 0, critique: 1, decision: 1, prioritise: 2, publish: 3 };
     const cur = map[page] != null ? map[page] : 0;
     return labels.map((label, i) => {
@@ -1674,16 +1838,16 @@ class Component extends DCLogic {
         stageLabel = 'Extract';
         attention = runtime.rerunPending ? 'Re-run extraction' : runtime.requestedDocsResolved ? 'Coverage complete' : flow.extract.missingDocs.length + ' files requested';
         attentionKind = runtime.requestedDocsResolved ? 'ok' : runtime.rerunPending ? 'warn' : 'warn';
-        status = runtime.requestedDocsResolved ? 'Ready for AI review' : runtime.continueIncomplete ? 'Ready for AI review' : runtime.rerunPending ? 'Awaiting re-run' : 'Needs source data';
+        status = runtime.requestedDocsResolved ? 'Ready for review' : runtime.continueIncomplete ? 'Ready for review' : runtime.rerunPending ? 'Awaiting re-run' : 'Needs source data';
         statusKind = runtime.requestedDocsResolved ? 'ok' : runtime.continueIncomplete ? 'neutral' : runtime.rerunPending ? 'warn' : 'warn';
       } else if (stage === 'review') {
-        stageLabel = 'AI Review';
+        stageLabel = 'Review';
         attention = openCount ? openCount + ' findings open' : 'Review complete';
         attentionKind = openCount ? 'warn' : 'ok';
         status = openCount ? 'Needs review' : 'Ready for approval';
         statusKind = openCount ? 'warn' : 'ok';
       } else if (stage === 'approval') {
-        stageLabel = 'Approval';
+        stageLabel = 'Approve';
         attention = openCount ? openCount + ' findings still open' : treatedCount + ' reviewer decisions';
         attentionKind = openCount ? 'warn' : 'ok';
         status = openCount ? 'Review incomplete' : 'Awaiting approval';
@@ -1933,11 +2097,11 @@ class Component extends DCLogic {
     const proceedToReview = () => {
       const firstOpen = flow.review.items.find((item) => this.getReviewState(runtime, item.id).status === 'open') || flow.review.items[0];
       this.setRuntime(proc.id, { ...runtime, stage: 'review' });
-      this.nav('critique', { activeDecisionId: firstOpen ? firstOpen.id : s.activeDecisionId });
+      this.nav('critique', { activeDecisionId: firstOpen ? firstOpen.id : s.activeDecisionId, decisionAnswerDraft: '' });
     };
-    const extractProceedLabel = extractResolved ? 'Continue to AI Review' : 'Ignore and continue to AI Review';
-    const extractProceedStyle = 'cursor:' + (extractCanProceed ? 'pointer' : 'not-allowed') + ';border:none;background:' + (extractCanProceed ? (extractResolved ? 'var(--accent-strong)' : 'var(--warn-pale)') : 'var(--neutral)') + ';color:' + (extractCanProceed ? (extractResolved ? '#fff' : 'var(--warn-deep)') : 'var(--ink3)') + ';font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:' + (extractCanProceed ? 'var(--pillow)' : 'none') + ';display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur)';
-    const extractProceedHelp = extractResolved ? 'Extraction is complete. Move into the AI review step.' : 'You are moving forward with incomplete extraction coverage.';
+    const extractProceedLabel = extractResolved ? 'Continue to review' : 'Ignore and continue to review';
+    const extractProceedStyle = 'cursor:' + (extractCanProceed ? 'pointer' : 'not-allowed') + ';border:none;background:' + (extractResolved ? (extractCanProceed ? 'var(--accent-strong)' : 'var(--neutral)') : 'var(--warn-pale)') + ';color:' + (extractResolved ? (extractCanProceed ? '#fff' : 'var(--ink3)') : 'var(--warn-deep)') + ';font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:' + ((extractCanProceed || !extractResolved) ? 'var(--pillow)' : 'none') + ';display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur);' + (!extractCanProceed && !extractResolved ? 'opacity:.78;' : '');
+    const extractProceedHelp = extractResolved ? 'Extraction is complete. Move into the review step.' : 'You are moving forward with incomplete extraction coverage.';
 
     const severityOrder = { danger: 0, warn: 1, neutral: 2 };
     const reviewItems = flow.review.items.slice().sort((a, b) => severityOrder[a.kind] - severityOrder[b.kind]);
@@ -1945,13 +2109,13 @@ class Component extends DCLogic {
     const treatedReviewItems = reviewItems.filter((item) => this.getReviewState(runtime, item.id).status !== 'open');
     const quickAccept = (item) => this.applyReviewDecision(proc.id, item.id, 'accepted', 'Accepted recommendation', item.quickAcceptRationale || 'AI recommendation accepted after evidence review.');
     const quickReject = (item) => this.applyReviewDecision(proc.id, item.id, 'rejected', 'Kept extracted value', 'Reviewer chose to keep the extracted value after checking the evidence.');
-    const openDecision = (item) => this.nav('decision', { activeDecisionId: item.id, decisionMode: null });
+    const openDecision = (item) => this.nav('decision', { activeDecisionId: item.id, decisionMode: null, decisionAnswerDraft: '' });
     const segStyle = (variant) => variant === 'selected'
       ? 'cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:12.5px;padding:8px 15px;border-radius:10px;transition:all var(--tdur)'
       : variant === 'accepted'
       ? 'cursor:pointer;border:1px solid var(--ok);background:var(--ok-pale);color:var(--ok-deep);font-weight:700;font-size:12.5px;padding:8px 15px;border-radius:10px;transition:all var(--tdur)'
       : variant === 'kept'
-      ? 'cursor:pointer;border:1px solid var(--neutral);background:var(--neutral-pale);color:var(--neutral-ink);font-weight:700;font-size:12.5px;padding:8px 15px;border-radius:10px;transition:all var(--tdur)'
+      ? 'cursor:pointer;border:1px solid #9aa4b7;background:var(--neutral-pale);color:var(--neutral-ink);font-weight:700;font-size:12.5px;padding:8px 15px;border-radius:10px;transition:all var(--tdur)'
       : 'cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:12.5px;padding:8px 15px;border-radius:10px;transition:all var(--tdur)';
     const acceptedCount = reviewItems.filter((item) => this.getReviewState(runtime, item.id).status === 'accepted').length;
     const editedCount = reviewItems.filter((item) => this.getReviewState(runtime, item.id).status === 'edited').length;
@@ -1975,11 +2139,11 @@ class Component extends DCLogic {
       const shellStyle = isAccepted
         ? 'background:var(--ok-pale);border:1px solid var(--ok);border-radius:var(--radius-sm);box-shadow:var(--info);padding:20px'
         : isKept
-        ? 'background:var(--neutral-pale);border:1px solid var(--neutral);border-radius:var(--radius-sm);box-shadow:var(--info);padding:20px'
+        ? 'background:var(--neutral-pale);border:1px solid #9aa4b7;border-radius:var(--radius-sm);box-shadow:var(--info);padding:20px'
         : isEdited
         ? 'background:var(--accent-pale);border:1px solid var(--accent);border-radius:var(--radius-sm);box-shadow:var(--info);padding:20px'
         : 'background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--info);padding:20px';
-      const preLabel = isAccepted ? 'Accepted' : isKept ? 'Kept as-is' : isEdited ? 'Edited' : 'Needs treatment';
+      const preLabel = isAccepted ? 'Accepted' : isKept ? 'Kept as-is' : isEdited ? 'Edited' : 'Needs review';
       const preStyle = isAccepted
         ? 'display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--ok-deep)'
         : isKept
@@ -2036,10 +2200,10 @@ class Component extends DCLogic {
       : 'No findings match this filter';
     const critiqueFilterEmptyCopy = critiqueFilter === 'open'
       ? 'Every finding has already been treated by the junior reviewer.'
-      : 'Try another filter, or click the same badge again to return to the full AI review list.';
+      : 'Try another filter, or click the same badge again to return to the full review list.';
     const critiqueCanContinue = openReviewItems.length === 0;
     const critiqueContinueStyle = 'cursor:' + (critiqueCanContinue ? 'pointer' : 'not-allowed') + ';border:none;background:' + (critiqueCanContinue ? 'var(--accent-strong)' : 'var(--neutral)') + ';color:' + (critiqueCanContinue ? '#fff' : 'var(--ink3)') + ';font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:' + (critiqueCanContinue ? 'var(--pillow)' : 'none') + ';display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur)';
-    const critiqueContinueHelp = critiqueCanContinue ? 'All AI review items have been treated.' : 'Resolve every AI review item before moving to approval.';
+    const critiqueContinueHelp = critiqueCanContinue ? 'All review items have been treated.' : 'Resolve every review item before moving to approval.';
     const goPrioritise = () => {
       if (!critiqueCanContinue) return;
       this.setRuntime(proc.id, { ...runtime, stage: 'approval' });
@@ -2047,28 +2211,54 @@ class Component extends DCLogic {
     };
 
     const decisionView = reviewItems.find((item) => item.id === s.activeDecisionId) || reviewItems[0];
+    const reviewAssist = REVIEW_ASSIST_CATALOG[decisionView.id] || {
+      screenshotTitle: 'Source screenshot',
+      screenshotMeta: decisionView.evidenceLeft.meta,
+      screenshotTag: decisionView.evidenceLeft.highlight,
+      guesses: [
+        { value: decisionView.editDefault, confidence: 60 },
+        { value: decisionView.recommendation, confidence: 30 },
+        { value: 'Escalate for expert review', confidence: 10 },
+      ],
+    };
+    const decisionAssist = {
+      ...reviewAssist,
+      guesses: reviewAssist.guesses.map((guess) => ({
+        ...guess,
+        confidenceLabel: guess.confidence + '% confidence',
+        confidenceStyle: this.chip(guess.confidence >= 60 ? 'ok' : guess.confidence >= 30 ? 'warn' : 'neutral'),
+        onSelect: () => selectReviewGuess(guess.value),
+      })),
+    };
     const decisionState = decisionView ? this.getReviewState(runtime, decisionView.id) : { status: 'open' };
     const acceptRec = () => this.applyReviewDecision(proc.id, decisionView.id, 'accepted', 'Accepted recommendation', decisionView.quickAcceptRationale || 'AI recommendation accepted after evidence review.');
     const openEdit = () => this.setState({ decisionMode: 'edit' });
     const openReject = () => this.setState({ decisionMode: 'reject' });
     const specialist = () => this.applyReviewDecision(proc.id, decisionView.id, 'escalated', 'Escalated to senior approver', 'Junior reviewer escalated this recommendation for explicit senior judgement.');
     const cancelDecision = () => this.setState({ decisionMode: null });
+    const selectReviewGuess = (value) => this.setState({ decisionAnswerDraft: value, decisionMode: 'edit' });
+    const useCustomReviewAnswer = () => {
+      const value = (document.getElementById('review-custom-answer') || {}).value;
+      if (!value) return;
+      this.setState({ decisionAnswerDraft: value, decisionMode: 'edit' });
+    };
     const confirmEdit = () => {
       const value = (document.getElementById('dec-edit-val') || {}).value;
       const rationale = (document.getElementById('dec-edit-rat') || {}).value;
       this.applyReviewDecision(proc.id, decisionView.id, 'edited', 'Edited before approval', rationale || 'Value edited by junior reviewer.', value || decisionView.editDefault);
-      this.setState({ decisionMode: null });
+      this.setState({ decisionMode: null, decisionAnswerDraft: '' });
     };
     const confirmReject = () => {
       const rationale = (document.getElementById('dec-reject-rat') || {}).value;
       this.applyReviewDecision(proc.id, decisionView.id, 'rejected', 'Kept extracted value', rationale || 'Reviewer kept the extracted value unchanged.');
-      this.setState({ decisionMode: null });
+      this.setState({ decisionMode: null, decisionAnswerDraft: '' });
     };
     const backToQueue = () => this.nav('critique');
     const decisionContinue = () => {
       this.setRuntime(proc.id, { ...runtime, stage: 'approval' });
       this.nav('prioritise');
     };
+    const decisionEditDefault = s.decisionAnswerDraft || decisionView.editDefault;
 
     const approvalDecisionRows = treatedReviewItems.map((item) => {
       const state = this.getReviewState(runtime, item.id);
@@ -2110,12 +2300,12 @@ class Component extends DCLogic {
       : 'This output is moving forward with incomplete extraction coverage. The senior approver can still see the source gap and every junior-review decision before deciding whether to publish.';
     const approvalReadinessTitle = openReviewItems.length === 0 ? 'Ready for sign-off' : 'Review still incomplete';
     const approvalReadinessCopy = openReviewItems.length === 0
-      ? 'Every AI review finding has been accepted, edited, rejected, or escalated. The output can move to publishing once senior approval is recorded.'
-      : 'There are still unresolved AI findings. The senior approver can send the package back to AI Review or wait until the junior reviewer finishes treatment.';
+      ? 'Every review finding has been accepted, edited, rejected, or escalated. The output can move to publishing once senior approval is recorded.'
+      : 'There are still unresolved review findings. The senior approver can send the package back to review or wait until the junior reviewer finishes treatment.';
     const approvalStatusCopy = runtime.approvalStatus === 'sent_back' && runtime.approvalReason
       ? 'Most recent send-back note: ' + runtime.approvalReason
       : extractResolved
-      ? 'Extraction coverage is complete. Approval will focus on whether the junior reviewer treated the AI findings appropriately.'
+      ? 'Extraction coverage is complete. Approval will focus on whether the junior reviewer treated the findings appropriately.'
       : 'Extraction coverage remains partial. Approval should weigh the remaining source gap as well as the reviewer treatment log.';
     const approvalApprover = APPROVER_NAME;
     const approvalReviewer = REVIEWER_NAME;
@@ -2144,16 +2334,16 @@ class Component extends DCLogic {
         approvalReason: reason,
       });
       this.setState({ sendBackModalOpen: false, sendBackDraft: '' });
-      this.nav('critique', { critiqueFilter: 'open' });
+      this.nav('critique', { critiqueFilter: 'open', decisionAnswerDraft: '' });
     };
     const approveForPublishStyle = 'cursor:' + (approvalCanApprove ? 'pointer' : 'not-allowed') + ';border:none;background:' + (approvalCanApprove ? 'var(--accent-strong)' : 'var(--neutral)') + ';color:' + (approvalCanApprove ? '#fff' : 'var(--ink3)') + ';font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:' + (approvalCanApprove ? 'var(--pillow)' : 'none') + ';display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur)';
-    const approvalFooter = approvalCanApprove ? 'Senior sign-off will unlock the publish step.' : 'Resolve the remaining AI findings before senior approval can continue.';
+    const approvalFooter = approvalCanApprove ? 'Senior sign-off will unlock the publish step.' : 'Resolve the remaining review findings before senior approval can continue.';
     const showSendBackModal = !!s.sendBackModalOpen;
     const sendBackDraftText = typeof s.sendBackDraft === 'string' ? s.sendBackDraft : '';
 
     const pubKey = proc.outputKey;
     const pub = { hierarchy: pubKey === 'hierarchy', sop: pubKey === 'sop', bom: pubKey === 'bom', report: false };
-    const checklist = ['Extraction coverage recorded', 'AI review treatment log complete', 'Senior approval recorded', 'Output validation passed', 'Export package ready'];
+    const checklist = ['Extraction coverage recorded', 'Review treatment log complete', 'Senior approval recorded', 'Output validation passed', 'Export package ready'];
     const exportFormats = { hierarchy: ['SAP upload workbook', 'Excel workbook', 'CSV'], sop: ['PDF', 'Word document'], bom: ['ERP upload workbook', 'Excel workbook', 'CSV'] };
     const publishExports = exportFormats[pubKey] || exportFormats.hierarchy;
     const published = !!runtime.published;
@@ -2169,8 +2359,8 @@ class Component extends DCLogic {
     const publishSummaryIntroLines = [
       'You extracted ' + publishSourceDocNames + ' with a completeness score of ' + extractCompletenessLabel + '.',
       acceptedCount || editedCount || rejectedCount
-        ? 'During AI Review, Oliver Bennett accepted ' + acceptedCount + ', edited ' + editedCount + ', and kept ' + rejectedCount + ' recommendations after checking the evidence.'
-        : 'During AI Review, no recommendations needed treatment beyond the initial extraction pass.',
+        ? 'During Review, Oliver Bennett accepted ' + acceptedCount + ', edited ' + editedCount + ', and kept ' + rejectedCount + ' recommendations after checking the evidence.'
+        : 'During Review, no recommendations needed treatment beyond the initial extraction pass.',
     ];
     const publishSummaryApprovalLine = runtime.approvedBy
       ? runtime.approvedBy + ' approved the package on ' + runtime.approvedAt + '.'
@@ -2189,7 +2379,7 @@ class Component extends DCLogic {
     const tabFilter = {
       all: () => true,
       attention: (row) => row.status === 'Needs source data' || row.status === 'Needs review' || row.status === 'Review incomplete',
-      progress: (row) => row.status === 'In progress' || row.status === 'Ready for AI review' || row.status === 'Awaiting approval',
+      progress: (row) => row.status === 'In progress' || row.status === 'Ready for review' || row.status === 'Awaiting approval',
       ready: (row) => row.status === 'Ready to publish',
       published: (row) => row.status === 'Published',
       archived: () => false,
@@ -2394,6 +2584,10 @@ class Component extends DCLogic {
       approveForPublishStyle,
       approvalFooter,
       decisionView,
+      reviewAssist: decisionAssist,
+      decisionAnswerDraft: s.decisionAnswerDraft || '',
+      useCustomReviewAnswer,
+      decisionEditDefault,
       decisionRecorded: decisionState.status !== 'open',
       decisionChoice: decisionState.choice || '',
       decisionRationale: decisionState.rationale || '',
