@@ -430,8 +430,11 @@ button{font-family:inherit}
           </div>
         </div>
 
-        <div style="display:flex;align-items:center;gap:14px;margin-top:26px">
-          <button onClick="{{ goPrioritise }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:var(--pillow);display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur)" style-hover="box-shadow:var(--pillow-lift)">Continue to approval <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div style="display:flex;justify-content:flex-end;align-items:flex-start;gap:14px;margin-top:26px">
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+            <button onClick="{{ goPrioritise }}" style="{{ critiqueContinueStyle }}" style-hover="box-shadow:var(--pillow-lift)">Continue to approval <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <span style="font-size:12.5px;color:var(--ink2);text-align:right">{{ critiqueContinueHelp }}</span>
+          </div>
         </div>
       </div>
     </sc-if>
@@ -554,7 +557,7 @@ button{font-family:inherit}
               <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink3)">SEND BACK TO AI REVIEW</div>
               <h3 style="font-size:24px;margin-top:8px">What should the junior reviewer revisit?</h3>
               <p style="font-size:13px;color:var(--ink2);line-height:1.55;margin-top:8px">This note will appear in the approval step and the AI review queue so the reviewer knows exactly what to fix.</p>
-              <textarea id="approval-sendback-reason" rows="4" placeholder="Explain what needs to be revisited before approval..." style="width:100%;margin-top:16px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:13.5px;color:var(--ink);font-family:inherit;resize:vertical">{{ sendBackDraft }}</textarea>
+              <textarea id="approval-sendback-reason" rows="4" defaultValue="{{ sendBackDraftText }}" placeholder="Explain what needs to be revisited before approval..." style="width:100%;margin-top:16px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);box-shadow:var(--inset);font-size:13.5px;color:var(--ink);font-family:inherit;resize:vertical"></textarea>
               <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:18px">
                 <button onClick="{{ cancelSendBackModal }}" style="cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:600;font-size:14px;padding:12px 20px;border-radius:13px">Cancel</button>
                 <button onClick="{{ confirmSendBackToReview }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:13px;box-shadow:var(--pillow)">Send back to AI Review</button>
@@ -666,9 +669,9 @@ button{font-family:inherit}
               <div><div style="font-size:10.5px;color:var(--ok-deep);opacity:.7;font-weight:700">TIMESTAMP</div><div style="font-size:13px;font-weight:600;margin-top:3px;color:var(--ink)">14 Jul 2026 · 09:42</div></div>
               <div><div style="font-size:10.5px;color:var(--ok-deep);opacity:.7;font-weight:700">RATIONALE</div><div style="font-size:13px;font-weight:600;margin-top:3px;color:var(--ink)">{{ decisionRationale }}</div></div>
             </div>
-            <div style="display:flex;gap:12px;margin-top:18px">
-              <button onClick="{{ decisionContinue }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:14px;padding:13px 24px;border-radius:13px;box-shadow:var(--pillow);display:inline-flex;align-items:center;gap:8px">Continue to approval <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:18px">
               <button onClick="{{ backToQueue }}" style="cursor:pointer;border:1px solid var(--ok);background:transparent;color:var(--ok-deep);font-weight:600;font-size:14px;padding:13px 22px;border-radius:13px">Back to AI review queue</button>
+              <button onClick="{{ decisionContinue }}" style="cursor:pointer;border:none;background:var(--accent-strong);color:#fff;font-weight:700;font-size:14px;padding:13px 24px;border-radius:13px;box-shadow:var(--pillow);display:inline-flex;align-items:center;gap:8px">Continue to approval <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
           </div>
         </sc-if>
@@ -1414,6 +1417,7 @@ const SEEDED_PROCESS_RUNTIME = {
   'proc-hier': {
     stage: 'extract',
     requestedDocsResolved: false,
+    rerunPending: false,
     continueIncomplete: false,
     extractUploads: [],
     reviewItemStates: {},
@@ -1426,6 +1430,7 @@ const SEEDED_PROCESS_RUNTIME = {
   'proc-sop': {
     stage: 'review',
     requestedDocsResolved: false,
+    rerunPending: false,
     continueIncomplete: true,
     extractUploads: [],
     reviewItemStates: {
@@ -1440,6 +1445,7 @@ const SEEDED_PROCESS_RUNTIME = {
   'proc-bom': {
     stage: 'approval',
     requestedDocsResolved: true,
+    rerunPending: false,
     continueIncomplete: false,
     extractUploads: [
       { name: 'ERP-Material-Master-Extract.xlsx', type: 'Spreadsheet', meta: 'Uploaded after extraction loop' },
@@ -1459,6 +1465,7 @@ const SEEDED_PROCESS_RUNTIME = {
   'proc-boiler': {
     stage: 'published',
     requestedDocsResolved: true,
+    rerunPending: false,
     continueIncomplete: false,
     extractUploads: [],
     reviewItemStates: {
@@ -1623,6 +1630,7 @@ class Component extends DCLogic {
     return {
       stage: 'extract',
       requestedDocsResolved: false,
+      rerunPending: false,
       continueIncomplete: false,
       extractUploads: [],
       reviewItemStates: {},
@@ -1664,10 +1672,10 @@ class Component extends DCLogic {
 
       if (stage === 'extract') {
         stageLabel = 'Extract';
-        attention = runtime.requestedDocsResolved ? 'Coverage complete' : flow.extract.missingDocs.length + ' files requested';
-        attentionKind = runtime.requestedDocsResolved ? 'ok' : 'warn';
-        status = runtime.requestedDocsResolved || runtime.continueIncomplete ? 'Ready for AI review' : 'Needs source data';
-        statusKind = runtime.requestedDocsResolved ? 'ok' : runtime.continueIncomplete ? 'neutral' : 'warn';
+        attention = runtime.rerunPending ? 'Re-run extraction' : runtime.requestedDocsResolved ? 'Coverage complete' : flow.extract.missingDocs.length + ' files requested';
+        attentionKind = runtime.requestedDocsResolved ? 'ok' : runtime.rerunPending ? 'warn' : 'warn';
+        status = runtime.requestedDocsResolved ? 'Ready for AI review' : runtime.continueIncomplete ? 'Ready for AI review' : runtime.rerunPending ? 'Awaiting re-run' : 'Needs source data';
+        statusKind = runtime.requestedDocsResolved ? 'ok' : runtime.continueIncomplete ? 'neutral' : runtime.rerunPending ? 'warn' : 'warn';
       } else if (stage === 'review') {
         stageLabel = 'AI Review';
         attention = openCount ? openCount + ' findings open' : 'Review complete';
@@ -1839,10 +1847,10 @@ class Component extends DCLogic {
       });
     };
 
-    const extractResolved = !!runtime.requestedDocsResolved;
+    const extractResolved = !!runtime.requestedDocsResolved && !runtime.rerunPending;
     const extractCanProceed = extractResolved || !!runtime.continueIncomplete;
     const extractNeedsMoreFiles = !extractResolved;
-    const extractCanRerun = (runtime.extractUploads || []).length > 0;
+    const extractCanRerun = !!runtime.rerunPending;
     const extractShowUploadActions = extractNeedsMoreFiles && !extractCanRerun;
     const extractHeading = flow.extract.heading;
     const extractIntro = flow.extract.intro;
@@ -1896,7 +1904,8 @@ class Component extends DCLogic {
       }));
       this.setRuntime(proc.id, {
         ...runtime,
-        requestedDocsResolved: true,
+        requestedDocsResolved: false,
+        rerunPending: true,
         continueIncomplete: false,
         extractUploads: [...(runtime.extractUploads || []), ...mapped],
       });
@@ -1914,6 +1923,11 @@ class Component extends DCLogic {
       }, 50);
     };
     const rerunExtraction = () => {
+      this.setRuntime(proc.id, {
+        ...runtime,
+        requestedDocsResolved: true,
+        rerunPending: false,
+      });
       this.runWithLoader('Re-running extraction with the newly supplied documents...', 'extract', 1600, {});
     };
     const proceedToReview = () => {
@@ -2023,7 +2037,11 @@ class Component extends DCLogic {
     const critiqueFilterEmptyCopy = critiqueFilter === 'open'
       ? 'Every finding has already been treated by the junior reviewer.'
       : 'Try another filter, or click the same badge again to return to the full AI review list.';
+    const critiqueCanContinue = openReviewItems.length === 0;
+    const critiqueContinueStyle = 'cursor:' + (critiqueCanContinue ? 'pointer' : 'not-allowed') + ';border:none;background:' + (critiqueCanContinue ? 'var(--accent-strong)' : 'var(--neutral)') + ';color:' + (critiqueCanContinue ? '#fff' : 'var(--ink3)') + ';font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:' + (critiqueCanContinue ? 'var(--pillow)' : 'none') + ';display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur)';
+    const critiqueContinueHelp = critiqueCanContinue ? 'All AI review items have been treated.' : 'Resolve every AI review item before moving to approval.';
     const goPrioritise = () => {
+      if (!critiqueCanContinue) return;
       this.setRuntime(proc.id, { ...runtime, stage: 'approval' });
       this.nav('prioritise');
     };
@@ -2131,7 +2149,7 @@ class Component extends DCLogic {
     const approveForPublishStyle = 'cursor:' + (approvalCanApprove ? 'pointer' : 'not-allowed') + ';border:none;background:' + (approvalCanApprove ? 'var(--accent-strong)' : 'var(--neutral)') + ';color:' + (approvalCanApprove ? '#fff' : 'var(--ink3)') + ';font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;box-shadow:' + (approvalCanApprove ? 'var(--pillow)' : 'none') + ';display:inline-flex;align-items:center;gap:9px;transition:all var(--tdur)';
     const approvalFooter = approvalCanApprove ? 'Senior sign-off will unlock the publish step.' : 'Resolve the remaining AI findings before senior approval can continue.';
     const showSendBackModal = !!s.sendBackModalOpen;
-    const sendBackDraft = s.sendBackDraft || '';
+    const sendBackDraftText = typeof s.sendBackDraft === 'string' ? s.sendBackDraft : '';
 
     const pubKey = proc.outputKey;
     const pub = { hierarchy: pubKey === 'hierarchy', sop: pubKey === 'sop', bom: pubKey === 'bom', report: false };
@@ -2348,6 +2366,8 @@ class Component extends DCLogic {
       critiqueNoResults,
       critiqueFilterEmptyTitle,
       critiqueFilterEmptyCopy,
+      critiqueContinueStyle,
+      critiqueContinueHelp,
       goPrioritise,
       approvalHeading,
       approvalIntro,
@@ -2368,7 +2388,7 @@ class Component extends DCLogic {
       approveForPublish,
       sendBackToReview,
       showSendBackModal,
-      sendBackDraft,
+      sendBackDraftText,
       cancelSendBackModal,
       confirmSendBackToReview,
       approveForPublishStyle,
